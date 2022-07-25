@@ -1,0 +1,10 @@
+{
+  "settingsPage": "Ustawienia",
+  "appAppearance": "Wygląd aplikacji",
+  "appAppearanceSystem": "System",
+  "appAppearanceLight": "Jasny",
+  "appAppearanceDark": "Ciemny",
+  "appAppearanceCustom": "Niestandardowy",
+  "appLang": "Język",
+  "appLangSystem": "System"
+}
