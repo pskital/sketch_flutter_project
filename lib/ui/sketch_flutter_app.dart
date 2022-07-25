@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:sketch_flutter_project/core/constants/lang_type.dart';
 import 'package:sketch_flutter_project/core/constants/theme_type.dart';
-import 'package:sketch_flutter_project/core/localizations/app_localizations.dart';
 import 'package:sketch_flutter_project/core/themes/dark_theme.dart';
 import 'package:sketch_flutter_project/data/providers/localizations_provider.dart';
 import 'package:sketch_flutter_project/data/repositories/theme_repository.dart';
-import 'package:sketch_flutter_project/logic/localizations_bloc.dart';
-import 'package:sketch_flutter_project/logic/theme_bloc.dart';
+import 'package:sketch_flutter_project/logic/localization/lang_state.dart';
+import 'package:sketch_flutter_project/logic/localization/localizations_bloc.dart';
+import 'package:sketch_flutter_project/logic/theme/theme_bloc.dart';
 import 'package:sketch_flutter_project/ui/settings_screen/settings_page.dart';
 
 class SketchFlutterApp extends StatefulWidget {
-  final AppLocalizationsDelegate localizationsDelegate;
+  final LocalizationsProvider localizationsProvider;
   final ThemeRepository themeRepository;
 
   const SketchFlutterApp({
+    required this.localizationsProvider,
     required this.themeRepository,
-    required this.localizationsDelegate,
     Key? key,
   }) : super(key: key);
 
@@ -31,30 +29,28 @@ class SketchFlutterApp extends StatefulWidget {
 
 class SketchFlutterAppState extends State<SketchFlutterApp>
     with WidgetsBindingObserver {
-  Key key = UniqueKey();
+
+  late LocalizationsBloc _localizationsBloc;
+  UniqueKey _key = UniqueKey();
 
   @override
   Widget build(BuildContext context) {
-    var localizationsDelegate = widget.localizationsDelegate;
-    var localizationsProvider = localizationsDelegate.localizationsProvider;
-
     var themeMode = widget.themeRepository.getThemeMode();
     var themeData = widget.themeRepository.getThemeData();
 
     var themeBloc = ThemeBloc(themeRepository: widget.themeRepository);
-    var localizationsBloc = LocalizationsBloc(
-        localizationRepository: localizationsProvider.localizationsRepository);
+
     return MultiBlocProvider(
         providers: [
           BlocProvider(create: (_) => themeBloc),
-          BlocProvider(create: (_) => localizationsBloc),
+          BlocProvider(create: (_) => _localizationsBloc),
         ],
         child: MultiBlocListener(
           listeners: [
             BlocListener<ThemeBloc, ThemeType>(
               listener: (context, state) => rebuild(),
             ),
-            BlocListener<LocalizationsBloc, LangType>(
+            BlocListener<LocalizationsBloc, LangState>(
               listener: (context, state) => rebuild(),
             ),
           ],
@@ -62,37 +58,31 @@ class SketchFlutterAppState extends State<SketchFlutterApp>
             title: 'Flutter Sketch App',
             themeMode: themeMode,
             theme: themeData,
-            supportedLocales: LocalizationsProvider.supportedLocales,
-            localizationsDelegates: <LocalizationsDelegate<dynamic>>[
-              localizationsDelegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-            ],
             darkTheme: DarkTheme().get(),
-            home: SettingsPage(key: key),
+            home: SettingsPage(key: _key),
           ),
         ));
   }
 
   @override
   void initState() {
+    var localizationsProvider = widget.localizationsProvider;
+    var localizationsRepository = localizationsProvider.localizationsRepository;
+    _localizationsBloc = LocalizationsBloc(repository: localizationsRepository);
+
     super.initState();
     WidgetsBinding.instance.addObserver(this);
   }
 
   @override
-  void didChangeLocales(List<Locale>? locales) async {
-    widget.localizationsDelegate.localizationsProvider.systemLocale =
-        locales?.first;
-    await widget.localizationsDelegate.localizationsProvider.loadTranslations();
+  void didChangeLocales(List<Locale>? locales) {
     super.didChangeLocales(locales);
-    rebuild();
+    _localizationsBloc.systemLocaleChange(locales);
   }
 
   void rebuild() {
     setState(() {
-      key = UniqueKey();
+      _key = UniqueKey();
     });
   }
 }

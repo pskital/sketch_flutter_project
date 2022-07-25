@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/constants/theme_type.dart';
 import 'package:sketch_flutter_project/data/providers/localizations_provider.dart';
-import 'package:sketch_flutter_project/logic/theme_bloc.dart';
+import 'package:sketch_flutter_project/logic/theme/theme_bloc.dart';
 import 'package:sketch_flutter_project/ui/widgets/bloc_provider_widget.dart';
 
 class ThemeSettingsWidget extends BlocProviderWidget<ThemeBloc, ThemeType> {
