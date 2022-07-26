@@ -4,13 +4,14 @@ import 'package:sketch_flutter_project/core/constants/theme_type.dart';
 import 'package:sketch_flutter_project/core/themes/custom_theme.dart';
 import 'package:sketch_flutter_project/core/themes/dark_theme.dart';
 import 'package:sketch_flutter_project/core/themes/light_theme.dart';
-import 'package:sketch_flutter_project/data/providers/local_storage_provider.dart';
 import 'package:sketch_flutter_project/data/storage/local_storage.dart';
 
 class ThemeRepository {
-  final LocalStorage _localStorage = LocalStorageProvider.getLocalStorage();
+  final LocalStorage localStorage;
 
   late ThemeType _themeType;
+
+  ThemeRepository({required this.localStorage});
 
   ThemeType get themeType => _themeType;
 
@@ -25,11 +26,11 @@ class ThemeRepository {
   }
 
   Future<void> saveTheme(String theme) async {
-    return await _localStorage.saveValue(StorageKeys.themeKey, theme);
+    return await localStorage.saveValue(StorageKeys.themeKey, theme);
   }
 
   Future<ThemeType> getThemeType() async {
-    var theme = await _localStorage.getValue(StorageKeys.themeKey);
+    var theme = await localStorage.getValue(StorageKeys.themeKey);
     return ThemeType.values.firstWhere((t) {
       var type = t.toString().split('.').last;
       return type == theme;

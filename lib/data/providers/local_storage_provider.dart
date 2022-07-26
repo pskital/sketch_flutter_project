@@ -11,8 +11,9 @@ class LocalStorageProvider {
 
   LocalStorageProvider._(this.localStorage);
 
-  Future<void> initStorage() async {
+  Future<LocalStorage> initStorage() async {
     await localStorage.init();
+    return getLocalStorage();
   }
 
   static LocalStorage getLocalStorage() {

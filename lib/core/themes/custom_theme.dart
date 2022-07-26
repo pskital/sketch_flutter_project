@@ -2,11 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sketch_flutter_project/core/themes/app_theme.dart';
-import 'package:sketch_flutter_project/core/themes/base_theme.dart';
 
-class CustomTheme implements AppTheme {
+class CustomTheme extends AppTheme {
   @override
-  ThemeData get() {
+  ThemeData createTheme() {
     var brightness = TargetPlatform.iOS == defaultTargetPlatform
         ? Brightness.dark
         : Brightness.light;
@@ -15,7 +14,7 @@ class CustomTheme implements AppTheme {
       primary: Colors.orange,
       secondary: Colors.orangeAccent,
     )).copyWith(
-      appBarTheme: BaseTheme.appBarTheme.copyWith(
+      appBarTheme: AppBarTheme(
           systemOverlayStyle: SystemUiOverlayStyle(
         statusBarBrightness: brightness,
         statusBarIconBrightness: brightness,

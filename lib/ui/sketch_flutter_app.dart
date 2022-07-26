@@ -29,7 +29,6 @@ class SketchFlutterApp extends StatefulWidget {
 
 class SketchFlutterAppState extends State<SketchFlutterApp>
     with WidgetsBindingObserver {
-
   late LocalizationsBloc _localizationsBloc;
   UniqueKey _key = UniqueKey();
 
@@ -68,7 +67,9 @@ class SketchFlutterAppState extends State<SketchFlutterApp>
   void initState() {
     var localizationsProvider = widget.localizationsProvider;
     var localizationsRepository = localizationsProvider.localizationsRepository;
-    _localizationsBloc = LocalizationsBloc(repository: localizationsRepository);
+    _localizationsBloc = LocalizationsBloc(
+        locationRepository: localizationsRepository,
+        localizationsProvider: localizationsProvider);
 
     super.initState();
     WidgetsBinding.instance.addObserver(this);
