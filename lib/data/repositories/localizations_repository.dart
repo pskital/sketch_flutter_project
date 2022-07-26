@@ -1,4 +1,4 @@
-import 'package:sketch_flutter_project/core/constants/lang_type.dart';
+import 'package:sketch_flutter_project/core/enums/lang_type.dart';
 import 'package:sketch_flutter_project/core/constants/storage_keys.dart';
 import 'package:sketch_flutter_project/data/storage/local_storage.dart';
 

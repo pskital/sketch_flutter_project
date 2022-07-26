@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sketch_flutter_project/core/constants/theme_type.dart';
+import 'package:sketch_flutter_project/core/enums/theme_type.dart';
 import 'package:sketch_flutter_project/core/extensions/string_translate_extension.dart';
 import 'package:sketch_flutter_project/core/styles/styles.dart';
 import 'package:sketch_flutter_project/logic/theme/theme_bloc.dart';

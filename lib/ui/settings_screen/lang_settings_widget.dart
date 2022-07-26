@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sketch_flutter_project/core/constants/lang_type.dart';
+import 'package:sketch_flutter_project/core/enums/lang_type.dart';
 import 'package:sketch_flutter_project/core/extensions/string_translate_extension.dart';
 import 'package:sketch_flutter_project/core/styles/styles.dart';
 import 'package:sketch_flutter_project/logic/localization/lang_state.dart';

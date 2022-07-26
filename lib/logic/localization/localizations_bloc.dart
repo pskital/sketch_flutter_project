@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sketch_flutter_project/core/constants/lang_type.dart';
+import 'package:sketch_flutter_project/core/enums/lang_type.dart';
 import 'package:sketch_flutter_project/data/providers/localizations_provider.dart';
 import 'package:sketch_flutter_project/data/repositories/localizations_repository.dart';
 import 'package:sketch_flutter_project/logic/localization/lang_state.dart';
