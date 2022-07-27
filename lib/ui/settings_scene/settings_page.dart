@@ -5,7 +5,7 @@ import 'package:sketch_flutter_project/ui/settings_scene/lang_settings_widget.da
 import 'package:sketch_flutter_project/ui/settings_scene/theme_settings_widget.dart';
 
 class SettingsPage extends StatelessWidget {
-  SettingsPage() : super(key: UniqueKey());
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

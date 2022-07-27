@@ -9,12 +9,8 @@ void main() async {
   var appDependencies = AppDependencies();
   await appDependencies.init();
 
-  runApp(MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => appDependencies.createLocalizationBloc()),
-        BlocProvider(create: (_) => appDependencies.createThemeBloc()),
-      ],
-      child: FlutterApp(
-        themeRepository: appDependencies.themeRepository,
-      )));
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider(create: (_) => appDependencies.translationsBloc),
+    BlocProvider(create: (_) => appDependencies.themeBloc),
+  ], child: const FlutterApp()));
 }

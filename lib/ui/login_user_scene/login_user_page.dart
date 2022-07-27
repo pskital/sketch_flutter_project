@@ -11,7 +11,7 @@ import 'package:sketch_flutter_project/ui/login_user_scene/login_user_button_wid
 import 'package:sketch_flutter_project/ui/widgets/bloc_widget.dart';
 
 class LoginUserPage extends StatelessWidget with LoginPageDependencies {
-  LoginUserPage() : super(key: UniqueKey());
+  LoginUserPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

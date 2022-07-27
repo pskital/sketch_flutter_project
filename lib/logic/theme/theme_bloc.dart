@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/enums/theme_type.dart';
 import 'package:sketch_flutter_project/data/repositories/theme_repository.dart';
 
@@ -12,5 +13,13 @@ class ThemeBloc extends BlocBase<ThemeType> {
       await themeRepository.setTheme(theme);
       emit(theme);
     }
+  }
+
+  ThemeMode getThemeMode() {
+    return themeRepository.getThemeMode();
+  }
+
+  ThemeData getThemeData() {
+    return themeRepository.getThemeData();
   }
 }

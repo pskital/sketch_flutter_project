@@ -1,5 +1,5 @@
-import 'package:sketch_flutter_project/data/providers/localizations_provider.dart';
+import 'package:sketch_flutter_project/data/repositories/translations_repository.dart';
 
 extension StringTranslateExtension on String {
-  String tr() => LocalizationsProvider.tr(this);
+  String tr() => TranslationsRepository.tr(this);
 }

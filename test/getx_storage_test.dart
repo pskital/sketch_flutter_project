@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:sketch_flutter_project/data/storage/local_storage/getx_storage.dart';
 import 'package:sketch_flutter_project/data/providers/storage_provider.dart';
+import 'package:sketch_flutter_project/data/storage/local_storage/getx_storage.dart';
 
 class MockGetXStorage extends Mock implements GetXStorage {}
 

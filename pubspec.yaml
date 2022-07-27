@@ -25,6 +25,8 @@ dependencies:
   json_annotation: 4.6.0
   dio: 4.0.6
 
+  flutter_svg: 1.1.1+1
+
 dev_dependencies:
   retrofit_generator: 4.0.3
   json_serializable: 6.3.1
@@ -47,4 +49,5 @@ flutter:
     - family: AudiType-Normal
       fonts:
         - asset: fonts/AudiType-Normal.ttf
+
 
