@@ -1,15 +1,15 @@
 import 'package:sketch_flutter_project/data/storage/local_storage.dart';
 
-class LocalStorageProvider {
-  static LocalStorageProvider? _instance;
+class StorageProvider {
+  static StorageProvider? _instance;
 
   late LocalStorage localStorage;
 
-  factory LocalStorageProvider({required LocalStorage localStorage}) {
-    return _instance ??= LocalStorageProvider._(localStorage);
+  factory StorageProvider({required LocalStorage localStorage}) {
+    return _instance ??= StorageProvider._(localStorage);
   }
 
-  LocalStorageProvider._(this.localStorage);
+  StorageProvider._(this.localStorage);
 
   Future<LocalStorage> initStorage() async {
     await localStorage.init();

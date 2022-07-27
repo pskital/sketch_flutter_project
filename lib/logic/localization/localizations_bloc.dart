@@ -24,7 +24,7 @@ class LocalizationsBloc extends BlocBase<LangState> {
     }
   }
 
-  void systemLocaleChange(List<Locale>? locales) async {
+  void updateSystemLocales(List<Locale>? locales) async {
     if (state.langType == LangType.system) {
       localizationsProvider.setSystemLocale(locales);
       await localizationsProvider.loadTranslations();

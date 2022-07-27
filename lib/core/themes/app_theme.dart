@@ -10,10 +10,14 @@ abstract class AppTheme {
         textTheme: themeData.textTheme.apply(
           fontFamily: FontFamily.audiTypeNormal,
         ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+                minimumSize: const Size(1, 50),
+                textStyle: const TextStyle(fontSize: FontSize.size18))),
         appBarTheme: themeData.appBarTheme.copyWith(
           centerTitle: false,
           titleTextStyle: const TextStyle(
-            fontSize: FontSize.size32,
+            fontSize: FontSize.size24,
           ).merge(themeData.appBarTheme.titleTextStyle),
         ));
   }

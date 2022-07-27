@@ -19,7 +19,7 @@ class SharedPreferencesStorage implements LocalStorage {
   }
 
   @override
-  Future<T?> getValue<T>(String key) async {
+  T? getValue<T>(String key) {
     return _sharedPreferences.get(key) as T?;
   }
 }

@@ -6,5 +6,12 @@
   "appAppearanceDark": "Dark",
   "appAppearanceCustom": "Custom",
   "appLang": "Language",
-  "appLangSystem": "System"
+  "appLangSystem": "System",
+  "loginPage": "Login",
+  "login": "Login",
+  "incorrectEmail": "Incorrect email",
+  "incorrectPassword": "Incorrect password",
+  "incorrectPasswordLength": "Incorrect password length",
+  "password": "Password",
+  "loginError": "Login error"
 }

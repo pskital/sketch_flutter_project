@@ -5,7 +5,7 @@ class HiveStorage implements LocalStorage {
   late Box _box;
 
   @override
-  Future<T?> getValue<T>(String key) async {
+  T? getValue<T>(String key) {
     return _box.get(key);
   }
 

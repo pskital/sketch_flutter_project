@@ -3,5 +3,5 @@ abstract class LocalStorage {
 
   Future<void> saveValue<T>(String key, T value);
 
-  Future<T?> getValue<T>(String key);
+  T? getValue<T>(String key);
 }

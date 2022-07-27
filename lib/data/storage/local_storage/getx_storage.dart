@@ -5,7 +5,7 @@ class GetXStorage implements LocalStorage {
   late GetStorage _getStorage;
 
   @override
-  Future<T?> getValue<T>(String key) async {
+  T? getValue<T>(String key) {
     return _getStorage.read(key);
   }
 

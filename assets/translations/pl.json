@@ -6,5 +6,12 @@
   "appAppearanceDark": "Ciemny",
   "appAppearanceCustom": "Niestandardowy",
   "appLang": "Język",
-  "appLangSystem": "System"
+  "appLangSystem": "System",
+  "loginPage": "Logowanie",
+  "login": "Logowanie",
+  "incorrectEmail": "Nieprawidłowy email",
+  "incorrectPassword": "Nieprawidłowe hasło",
+  "incorrectPasswordLength": "Nieprawidłowa długość hasła",
+  "password": "Hasło",
+  "loginError": "Wystąpił błąd podczas logowania"
 }

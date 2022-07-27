@@ -8,9 +8,8 @@ abstract class BlocWidget<T extends StateStreamable<S>, S>
   @override
   Widget build(BuildContext context) {
     T bloc = context.read<T>();
-    return BlocBuilder<T, S>(
-        builder: (context, data) => buildWidget(context, bloc, data));
+    return buildWidget(context, bloc);
   }
 
-  buildWidget(BuildContext context, T bloc, S data);
+  buildWidget(BuildContext context, T bloc);
 }

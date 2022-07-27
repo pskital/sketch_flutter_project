@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/constants/paddings.dart';
 import 'package:sketch_flutter_project/core/extensions/string_translate_extension.dart';
-import 'package:sketch_flutter_project/ui/settings_screen/lang_settings_widget.dart';
-import 'package:sketch_flutter_project/ui/settings_screen/theme_settings_widget.dart';
+import 'package:sketch_flutter_project/ui/settings_scene/lang_settings_widget.dart';
+import 'package:sketch_flutter_project/ui/settings_scene/theme_settings_widget.dart';
 
 class SettingsPage extends StatelessWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+  SettingsPage() : super(key: UniqueKey());
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class SettingsPage extends StatelessWidget {
             padding: const EdgeInsets.all(Paddings.pagePadding),
             children: const [
               ThemeSettingsWidget(),
-              LangSettingsPage(),
+              LangSettingsWidget(),
             ],
           ),
         ));
