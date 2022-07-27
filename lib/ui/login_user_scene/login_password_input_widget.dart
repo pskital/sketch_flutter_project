@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/extensions/string_translate_extension.dart';
 import 'package:sketch_flutter_project/core/styles/styles.dart';
-import 'package:sketch_flutter_project/core/utils/form_validator.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_bloc.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
 import 'package:sketch_flutter_project/ui/widgets/bloc_widget.dart';
@@ -27,7 +26,7 @@ class LoginPasswordInputWidget
           maxLines: 1,
           autocorrect: false,
           keyboardType: TextInputType.visiblePassword,
-          validator: FormValidator.passwordValidator,
+          validator: bloc.loginFormValidator.passwordValidator,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           controller: bloc.passwordTextController,
         ),

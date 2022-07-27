@@ -7,11 +7,11 @@ import 'package:sketch_flutter_project/logic/localization/lang_state.dart';
 import 'package:sketch_flutter_project/logic/localization/translation_bloc.dart';
 import 'package:sketch_flutter_project/ui/widgets/bloc_widget.dart';
 
-class LangSettingsWidget extends BlocWidget<TranslationsBloc, LangState> {
+class LangSettingsWidget extends BlocWidget<LanguageBloc, LangState> {
   const LangSettingsWidget({Key? key}) : super(key: key);
 
   @override
-  Widget buildWidget(BuildContext context, TranslationsBloc bloc) {
+  Widget buildWidget(BuildContext context, LanguageBloc bloc) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

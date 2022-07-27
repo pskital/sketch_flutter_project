@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/extensions/string_translate_extension.dart';
 import 'package:sketch_flutter_project/core/styles/styles.dart';
-import 'package:sketch_flutter_project/core/utils/form_validator.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_bloc.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
 import 'package:sketch_flutter_project/ui/widgets/bloc_widget.dart';
 
-class LoginInputWidget
-    extends BlocWidget<LoginUserBloc, UserLoginState?> {
+class LoginInputWidget extends BlocWidget<LoginUserBloc, UserLoginState?> {
   const LoginInputWidget({Key? key}) : super(key: key);
 
   @override
@@ -27,7 +25,7 @@ class LoginInputWidget
           maxLines: 1,
           autocorrect: false,
           keyboardType: TextInputType.emailAddress,
-          validator: FormValidator.emailValidator,
+          validator: bloc.loginFormValidator.emailValidator,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           controller: bloc.emailTextController,
         ),

@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-mixin ExceptionsHandler {
-  String? handleException(Object object) {
+mixin ErrorHandler {
+  String? handleError(Object object) {
     String? message;
     debugPrint(object.toString());
 
@@ -12,8 +12,7 @@ mixin ExceptionsHandler {
         //TODO handle server error message
         return message;
       }
-    } else {
-      return message;
     }
+    return null;
   }
 }

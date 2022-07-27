@@ -13,5 +13,6 @@
   "incorrectPassword": "Nieprawidłowe hasło",
   "incorrectPasswordLength": "Nieprawidłowa długość hasła",
   "password": "Hasło",
-  "loginError": "Wystąpił błąd podczas logowania"
+  "loginError": "Wystąpił błąd podczas logowania",
+  "invalidCredentials": "Nieprawidłowe dane logowania"
 }

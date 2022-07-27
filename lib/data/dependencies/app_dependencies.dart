@@ -8,7 +8,7 @@ import 'package:sketch_flutter_project/logic/localization/translation_bloc.dart'
 import 'package:sketch_flutter_project/logic/theme/theme_bloc.dart';
 
 class AppDependencies {
-  late TranslationsBloc translationsBloc;
+  late LanguageBloc translationsBloc;
   late ThemeBloc themeBloc;
 
   Future<void> init() async {
@@ -32,7 +32,7 @@ class AppDependencies {
      * Translations
      */
     var assetLoader = const RootBundleAssetLoader();
-    var translationsRepository = TranslationsRepository(
+    var translationsRepository = LanguageRepository(
       localStorage: localStorage,
       assetLoader: assetLoader,
     );
@@ -40,8 +40,8 @@ class AppDependencies {
 
     var systemLocales = WidgetsBinding.instance.window.locales;
 
-    var translationsBloc = TranslationsBloc(
-      translationsRepository: translationsRepository,
+    var translationsBloc = LanguageBloc(
+      languageRepository: translationsRepository,
     );
     await translationsRepository.setSystemLocale(systemLocales);
     this.translationsBloc = translationsBloc;

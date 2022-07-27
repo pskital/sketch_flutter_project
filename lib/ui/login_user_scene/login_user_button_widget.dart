@@ -21,7 +21,7 @@ class LoginUserButtonWidget
             Visibility(
               visible: data is! UserLoginInProgressState,
               child: ElevatedButton(
-                onPressed: () => bloc.add(UserLoginEvent()),
+                onPressed: () => bloc.add(const UserLoginEvent()),
                 child: Text('login'.tr()),
               ),
             ),

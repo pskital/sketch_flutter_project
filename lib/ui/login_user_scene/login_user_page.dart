@@ -31,7 +31,7 @@ class _LoginUserPage extends BlocWidget<LoginUserBloc, UserLoginState?> {
           listener: _loginStateListener,
           child: SafeArea(
             child: Form(
-              key: bloc.loginFormKey,
+              key: bloc.loginFormValidator.loginFormKey,
               child: ListView(
                 padding: const EdgeInsets.all(Paddings.pagePadding),
                 children: const [

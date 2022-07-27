@@ -1,17 +1,18 @@
+import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/extensions/email_validator_extension.dart';
 import 'package:sketch_flutter_project/core/extensions/string_translate_extension.dart';
 
-class FormValidator {
-  FormValidator._();
+class UserLoginFormValidator {
+  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
-  static String? Function(String?) emailValidator = (value) {
+  String? Function(String?) emailValidator = (value) {
     if (value == null || !value.isValidEmail()) {
       return 'incorrectEmail'.tr();
     }
     return null;
   };
 
-  static String? Function(String?) passwordValidator = (value) {
+  String? Function(String?) passwordValidator = (value) {
     if (value == null) {
       return 'incorrectPassword'.tr();
     }
@@ -21,4 +22,8 @@ class FormValidator {
     }
     return null;
   };
+
+  bool isLoginFormValid() {
+    return loginFormKey.currentState?.validate() ?? false;
+  }
 }

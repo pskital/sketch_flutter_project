@@ -13,5 +13,6 @@
   "incorrectPassword": "Incorrect password",
   "incorrectPasswordLength": "Incorrect password length",
   "password": "Password",
-  "loginError": "Login error"
+  "loginError": "Login error",
+  "invalidCredentials": "Invalid login credentials"
 }

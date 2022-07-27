@@ -4,16 +4,16 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/exceptions/exceptions_handler.dart';
+import 'package:sketch_flutter_project/core/extensions/string_translate_extension.dart';
 import 'package:sketch_flutter_project/core/utils/keyboard_utils.dart';
 import 'package:sketch_flutter_project/data/repositories/token_repository.dart';
 import 'package:sketch_flutter_project/data/rest_api/user_rest_api.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_event.dart';
+import 'package:sketch_flutter_project/logic/user_login/user_login_form_validator.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
 
-class LoginUserBloc extends Bloc<UserLoginEvent, UserLoginState?>
-    with ExceptionsHandler {
-  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
-
+class LoginUserBloc extends Bloc<UserLoginEvent, UserLoginState>
+    with ErrorHandler {
   final emailTextController = TextEditingController(
     text: kReleaseMode ? '' : 'test@gmail.com',
   );
@@ -21,13 +21,15 @@ class LoginUserBloc extends Bloc<UserLoginEvent, UserLoginState?>
     text: kReleaseMode ? '' : 'test123',
   );
 
+  final UserLoginFormValidator loginFormValidator;
   final TokenRepository tokenRepository;
   final UserRestApi userRestApi;
 
   LoginUserBloc({
+    required this.loginFormValidator,
     required this.tokenRepository,
     required this.userRestApi,
-  }) : super(null) {
+  }) : super(UserLoginIdleState()) {
     on<UserLoginEvent>(_onUserLoginEvent);
   }
 
@@ -35,10 +37,10 @@ class LoginUserBloc extends Bloc<UserLoginEvent, UserLoginState?>
     event,
     emit,
   ) async {
-    emit(UserLoginInProgressState());
+    emit(const UserLoginInProgressState());
 
-    if (!_isLoginFormValid()) {
-      emit(null);
+    if (!loginFormValidator.isLoginFormValid()) {
+      emit(UserLoginErrorState('invalidCredentials'.tr()));
       return;
     }
 
@@ -57,11 +59,7 @@ class LoginUserBloc extends Bloc<UserLoginEvent, UserLoginState?>
       await tokenRepository.saveToken(responseLoginUserModel.token);
       emit(UserLoginSuccessState(responseLoginUserModel));
     } catch (error) {
-      emit(UserLoginErrorState(handleException(error)));
+      emit(UserLoginErrorState(handleError(error)));
     }
-  }
-
-  bool _isLoginFormValid() {
-    return loginFormKey.currentState?.validate() ?? false;
   }
 }

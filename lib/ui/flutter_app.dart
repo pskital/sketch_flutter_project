@@ -28,7 +28,7 @@ class FlutterAppState extends State<FlutterApp> with WidgetsBindingObserver {
         BlocListener<ThemeBloc, ThemeType>(
           listener: (context, state) => _rebuildWidget(),
         ),
-        BlocListener<TranslationsBloc, LangState>(
+        BlocListener<LanguageBloc, LangState>(
           listener: (context, state) => _rebuildWidget(),
         ),
       ],
@@ -55,7 +55,7 @@ class FlutterAppState extends State<FlutterApp> with WidgetsBindingObserver {
   @override
   void didChangeLocales(List<Locale>? locales) {
     super.didChangeLocales(locales);
-    context.read<TranslationsBloc>().add(SetSystemLocaleEvent(locales: locales));
+    context.read<LanguageBloc>().add(SetSystemLocaleEvent(locales: locales));
   }
 
   void _rebuildWidget() {

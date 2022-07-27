@@ -4,7 +4,7 @@ import 'package:sketch_flutter_project/core/enums/lang_type.dart';
 import 'package:sketch_flutter_project/core/utils/asset_loader.dart';
 import 'package:sketch_flutter_project/data/storage/local_storage.dart';
 
-class TranslationsRepository {
+class LanguageRepository {
   final LocalStorage localStorage;
 
   late LangType langType;
@@ -23,8 +23,10 @@ class TranslationsRepository {
   RootBundleAssetLoader assetLoader;
   Locale? _systemLocale;
 
-  TranslationsRepository(
-      {required this.localStorage, required this.assetLoader});
+  LanguageRepository({
+    required this.localStorage,
+    required this.assetLoader,
+  });
 
   Future<void> initLang() async {
     langType = await getLangType();
