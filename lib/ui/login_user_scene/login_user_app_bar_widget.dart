@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:sketch_flutter_project/core/extensions/string_translate_extension.dart';
+import 'package:sketch_flutter_project/core/extensions/translation_extension.dart';
 import 'package:sketch_flutter_project/core/route/app_route.dart';
 import 'package:sketch_flutter_project/ui/widgets/app_bar_base_widget.dart';
 
 class AppBarWidget extends AppBarBaseWidget {
-  const AppBarWidget({
-    Key? key,
-  }) : super(key: key);
+  const AppBarWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

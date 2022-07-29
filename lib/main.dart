@@ -10,7 +10,7 @@ void main() async {
   await appDependencies.init();
 
   runApp(MultiBlocProvider(providers: [
-    BlocProvider(create: (_) => appDependencies.translationsBloc),
+    BlocProvider(create: (_) => appDependencies.languageBloc),
     BlocProvider(create: (_) => appDependencies.themeBloc),
   ], child: const FlutterApp()));
 }

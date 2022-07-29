@@ -5,9 +5,7 @@ import 'package:sketch_flutter_project/data/storage/local_storage/hive_storage.d
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setUp(() {});
-
-  test('hive box storage test', () => _test());
+  test('test hive box storage', () => _test());
 }
 
 _test() async {

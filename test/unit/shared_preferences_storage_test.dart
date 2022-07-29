@@ -10,7 +10,7 @@ void main() async {
     SharedPreferences.setMockInitialValues({});
   });
 
-  test('shared preferences storage test', () => _test());
+  test('test shared preferences storage', () => _test());
 }
 
 _test() async {

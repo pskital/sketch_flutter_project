@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/extensions/email_validator_extension.dart';
-import 'package:sketch_flutter_project/core/extensions/string_translate_extension.dart';
+import 'package:sketch_flutter_project/core/extensions/translation_extension.dart';
 
 class UserLoginFormValidator {
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();

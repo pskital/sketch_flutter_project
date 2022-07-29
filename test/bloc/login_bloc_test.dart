@@ -40,7 +40,7 @@ void main() {
       setUp: () {
         when(() => mockLoginFormValidator.isLoginFormValid()).thenReturn(false);
       },
-      wait: const Duration(milliseconds: 1000),
+      wait: const Duration(milliseconds: 700),
       build: () => loginUserBloc,
       act: (bloc) {
         bloc.add(const UserLoginEvent());
@@ -59,7 +59,7 @@ void main() {
         when(() => mockTokenRepository.saveToken(responseLoginUserModel.token))
             .thenAnswer((_) async => Future.value());
       },
-      wait: const Duration(milliseconds: 1000),
+      wait: const Duration(milliseconds: 700),
       build: () => loginUserBloc,
       act: (bloc) {
         bloc.add(const UserLoginEvent());

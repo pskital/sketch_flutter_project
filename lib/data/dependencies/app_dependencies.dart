@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/utils/asset_loader.dart';
 import 'package:sketch_flutter_project/data/providers/storage_provider.dart';
+import 'package:sketch_flutter_project/data/repositories/language_repository.dart';
 import 'package:sketch_flutter_project/data/repositories/theme_repository.dart';
-import 'package:sketch_flutter_project/data/repositories/translations_repository.dart';
 import 'package:sketch_flutter_project/data/storage/local_storage/shared_preferences_storage.dart';
-import 'package:sketch_flutter_project/logic/localization/translation_bloc.dart';
+import 'package:sketch_flutter_project/logic/localization/language_bloc.dart';
 import 'package:sketch_flutter_project/logic/theme/theme_bloc.dart';
 
 class AppDependencies {
-  late LanguageBloc translationsBloc;
+  late LanguageBloc languageBloc;
   late ThemeBloc themeBloc;
 
   Future<void> init() async {
     /**
-     * Sorage
+     * Storage
      */
     var preferencesStorage = SharedPreferencesStorage();
     var storageProvider = StorageProvider(localStorage: preferencesStorage);
@@ -25,25 +25,21 @@ class AppDependencies {
     var themeRepository = ThemeRepository(localStorage: localStorage);
     await themeRepository.initTheme();
 
-    var themeBloc = ThemeBloc(themeRepository: themeRepository);
-    this.themeBloc = themeBloc;
+    themeBloc = ThemeBloc(themeRepository: themeRepository);
 
     /**
-     * Translations
+     * Language
      */
     var assetLoader = const RootBundleAssetLoader();
-    var translationsRepository = LanguageRepository(
+    var languageRepository = LanguageRepository(
       localStorage: localStorage,
       assetLoader: assetLoader,
     );
-    await translationsRepository.initLang();
 
     var systemLocales = WidgetsBinding.instance.window.locales;
+    await languageRepository.setSystemLocale(systemLocales);
 
-    var translationsBloc = LanguageBloc(
-      languageRepository: translationsRepository,
-    );
-    await translationsRepository.setSystemLocale(systemLocales);
-    this.translationsBloc = translationsBloc;
+    var languageBloc = LanguageBloc(languageRepository: languageRepository);
+    this.languageBloc = languageBloc;
   }
 }

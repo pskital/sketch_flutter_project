@@ -11,8 +11,6 @@ import 'package:sketch_flutter_project/ui/login_user_scene/login_user_button_wid
 import 'package:sketch_flutter_project/ui/widgets/bloc_widget.dart';
 
 class LoginUserPage extends StatelessWidget with LoginPageDependencies {
-  LoginUserPage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -22,19 +20,19 @@ class LoginUserPage extends StatelessWidget with LoginPageDependencies {
   }
 }
 
-class _LoginUserPage extends BlocWidget<LoginUserBloc, UserLoginState?> {
+class _LoginUserPage extends BlocWidget<LoginUserBloc, UserLoginState> {
   @override
   Widget buildWidget(BuildContext context, LoginUserBloc bloc) {
     return Scaffold(
         appBar: const AppBarWidget(),
-        body: BlocListener<LoginUserBloc, UserLoginState?>(
+        body: BlocListener<LoginUserBloc, UserLoginState>(
           listener: _loginStateListener,
           child: SafeArea(
             child: Form(
               key: bloc.loginFormValidator.loginFormKey,
               child: ListView(
                 padding: const EdgeInsets.all(Paddings.pagePadding),
-                children: const [
+                children: [
                   LoginInputWidget(),
                   LoginPasswordInputWidget(),
                   LoginUserButtonWidget(),
@@ -45,12 +43,12 @@ class _LoginUserPage extends BlocWidget<LoginUserBloc, UserLoginState?> {
         ));
   }
 
-  void _loginStateListener(BuildContext context, UserLoginState? state) {
-    if (state != null && state is UserLoginErrorState) {
+  void _loginStateListener(BuildContext context, UserLoginState state) {
+    if (state is UserLoginErrorState) {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
         ..showSnackBar(SnackBar(
-          content: Text(state.errorMessage),
+          content: Text(state.getErrorMessage()),
           duration: const Duration(seconds: 2),
         ));
     }

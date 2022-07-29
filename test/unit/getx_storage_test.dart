@@ -15,7 +15,7 @@ void main() async {
     when(() => getXStorage.init()).thenAnswer((_) => Future.value());
   });
 
-  test('getx storage test', () => _test());
+  test('test getx storage', () => _test());
 }
 
 _test() async {

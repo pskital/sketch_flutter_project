@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sketch_flutter_project/core/enums/theme_type.dart';
 import 'package:sketch_flutter_project/core/route/app_route.dart';
 import 'package:sketch_flutter_project/core/themes/dark_theme.dart';
-import 'package:sketch_flutter_project/logic/localization/lang_event.dart';
-import 'package:sketch_flutter_project/logic/localization/lang_state.dart';
-import 'package:sketch_flutter_project/logic/localization/translation_bloc.dart';
+import 'package:sketch_flutter_project/logic/localization/language_bloc.dart';
+import 'package:sketch_flutter_project/logic/localization/language_event.dart';
+import 'package:sketch_flutter_project/logic/localization/language_state.dart';
 import 'package:sketch_flutter_project/logic/theme/theme_bloc.dart';
 
 class FlutterApp extends StatefulWidget {
@@ -28,7 +28,7 @@ class FlutterAppState extends State<FlutterApp> with WidgetsBindingObserver {
         BlocListener<ThemeBloc, ThemeType>(
           listener: (context, state) => _rebuildWidget(),
         ),
-        BlocListener<LanguageBloc, LangState>(
+        BlocListener<LanguageBloc, LanguageState>(
           listener: (context, state) => _rebuildWidget(),
         ),
       ],

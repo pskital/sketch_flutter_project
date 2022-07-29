@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:sketch_flutter_project/core/extensions/string_translate_extension.dart';
+import 'package:sketch_flutter_project/core/extensions/translation_extension.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_bloc.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_event.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
 import 'package:sketch_flutter_project/ui/widgets/bloc_builder_widget.dart';
 
 class LoginUserButtonWidget
-    extends BlocBuilderWidget<LoginUserBloc, UserLoginState?> {
-  const LoginUserButtonWidget({Key? key}) : super(key: key);
-
+    extends BlocBuilderWidget<LoginUserBloc, UserLoginState> {
   @override
-  buildWidget(BuildContext context, LoginUserBloc bloc, UserLoginState? data) {
+  buildWidget(BuildContext context, LoginUserBloc bloc, UserLoginState data) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -21,7 +19,9 @@ class LoginUserButtonWidget
             Visibility(
               visible: data is! UserLoginInProgressState,
               child: ElevatedButton(
-                onPressed: () => bloc.add(const UserLoginEvent()),
+                onPressed: data is UserLoginSuccessState
+                    ? null
+                    : () => bloc.add(const UserLoginEvent()),
                 child: Text('login'.tr()),
               ),
             ),

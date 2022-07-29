@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/enums/theme_type.dart';
-import 'package:sketch_flutter_project/core/extensions/string_translate_extension.dart';
+import 'package:sketch_flutter_project/core/extensions/translation_extension.dart';
 import 'package:sketch_flutter_project/core/styles/styles.dart';
 import 'package:sketch_flutter_project/logic/theme/theme_bloc.dart';
 import 'package:sketch_flutter_project/ui/widgets/bloc_widget.dart';
 
-class ThemeSettingsWidget extends BlocWidget<ThemeBloc, ThemeType> {
-  const ThemeSettingsWidget({Key? key}) : super(key: key);
+class SettingThemeWidget extends BlocWidget<ThemeBloc, ThemeType> {
+  const SettingThemeWidget({Key? key}) : super(key: key);
 
   @override
   Widget buildWidget(BuildContext context, ThemeBloc bloc) {
