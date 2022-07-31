@@ -14,5 +14,8 @@
   "incorrectPasswordLength": "Nieprawidłowa długość hasła",
   "password": "Hasło",
   "loginError": "Wystąpił błąd podczas logowania",
-  "invalidCredentials": "Nieprawidłowe dane logowania"
+  "invalidCredentials": "Nieprawidłowe dane logowania",
+  "settings": "Ustawienia",
+  "homeNested": "Zagnieżdźenie"
+
 }

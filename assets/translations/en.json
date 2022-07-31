@@ -14,5 +14,7 @@
   "incorrectPasswordLength": "Incorrect password length",
   "password": "Password",
   "loginError": "Login error",
-  "invalidCredentials": "Invalid login credentials"
+  "invalidCredentials": "Invalid login credentials",
+  "settings": "Settings",
+  "homeNested": "Home nested"
 }

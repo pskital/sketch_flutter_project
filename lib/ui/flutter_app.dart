@@ -14,10 +14,10 @@ class FlutterApp extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<FlutterApp> createState() => FlutterAppState();
+  State<FlutterApp> createState() => _FlutterAppState();
 }
 
-class FlutterAppState extends State<FlutterApp> with WidgetsBindingObserver {
+class _FlutterAppState extends State<FlutterApp> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     var themeBloc = context.read<ThemeBloc>();

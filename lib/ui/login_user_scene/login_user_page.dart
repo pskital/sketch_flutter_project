@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sketch_flutter_project/core/constants/paddings.dart';
-import 'package:sketch_flutter_project/data/dependencies/login_page_dependencies.dart';
+import 'package:sketch_flutter_project/core/route/app_route.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_bloc.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
 import 'package:sketch_flutter_project/ui/login_user_scene/login_input_widget.dart';
@@ -10,11 +10,11 @@ import 'package:sketch_flutter_project/ui/login_user_scene/login_user_app_bar_wi
 import 'package:sketch_flutter_project/ui/login_user_scene/login_user_button_widget.dart';
 import 'package:sketch_flutter_project/ui/widgets/bloc_widget.dart';
 
-class LoginUserPage extends StatelessWidget with LoginPageDependencies {
+class LoginUserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => createLoginUserBloc(),
+      create: (_) => LoginUserBloc(),
       child: _LoginUserPage(),
     );
   }
@@ -51,6 +51,8 @@ class _LoginUserPage extends BlocWidget<LoginUserBloc, UserLoginState> {
           content: Text(state.getErrorMessage()),
           duration: const Duration(seconds: 2),
         ));
+    } else if (state is UserLoginSuccessState) {
+      Navigator.of(context).popAndPushNamed(AppRoute.dashboardPage);
     }
   }
 }

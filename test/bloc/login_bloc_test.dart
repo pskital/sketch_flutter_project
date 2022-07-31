@@ -29,10 +29,10 @@ void main() {
     mockTokenRepository = MockTokenRepository();
     mockUserRestApi = MockUserRestApi();
 
-    loginUserBloc = LoginUserBloc(
-      loginFormValidator: mockLoginFormValidator,
-      tokenRepository: mockTokenRepository,
-      userRestApi: mockUserRestApi,
+    loginUserBloc = LoginUserBloc.test(
+      mockLoginFormValidator,
+      mockTokenRepository,
+      mockUserRestApi,
     );
   });
 
@@ -54,7 +54,7 @@ void main() {
   blocTest<LoginUserBloc, UserLoginState?>('test login success request',
       setUp: () {
         when(() => mockLoginFormValidator.isLoginFormValid()).thenReturn(true);
-        when(() => mockUserRestApi.loginUser('test@gmail.com', 'test123'))
+        when(() => mockUserRestApi.loginUser('test@gmail.com', 'test123', true))
             .thenAnswer((_) async => Future.value(responseLoginUserModel));
         when(() => mockTokenRepository.saveToken(responseLoginUserModel.token))
             .thenAnswer((_) async => Future.value());
@@ -66,6 +66,6 @@ void main() {
       },
       expect: () => [
             const UserLoginInProgressState(),
-            UserLoginSuccessState(responseLoginUserModel),
+            const UserLoginSuccessState(),
           ]);
 }

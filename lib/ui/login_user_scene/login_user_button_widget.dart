@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/extensions/translation_extension.dart';
+import 'package:sketch_flutter_project/core/keys/keys.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_bloc.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_event.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
@@ -19,6 +20,7 @@ class LoginUserButtonWidget
             Visibility(
               visible: data is! UserLoginInProgressState,
               child: ElevatedButton(
+                key: Keys.loginButtonKey,
                 onPressed: data is UserLoginSuccessState
                     ? null
                     : () => bloc.add(const UserLoginEvent()),

@@ -6,13 +6,13 @@ part 'user_rest_api.g.dart';
 
 //flutter pub run build_runner build --delete-conflicting-outputs
 
-@RestApi()
+@RestApi(baseUrl: 'https://automaniak.azurewebsites.net/')
 abstract class UserRestApi {
   factory UserRestApi(Dio dio, {String baseUrl}) = _UserRestApi;
 
   @POST('/api/User/LoginUser')
   Future<ResponseLoginUserModel> loginUser(
-    @Query('login') String login,
-    @Query('password') String password,
-  );
+      @Query('login') String login,
+      @Query('password') String password,
+      @Query('isPrivacyAccepted') bool isPrivacyAccepted);
 }

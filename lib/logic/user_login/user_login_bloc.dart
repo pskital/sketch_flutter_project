@@ -6,6 +6,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/extensions/translation_extension.dart';
 import 'package:sketch_flutter_project/core/utils/keyboard_utils.dart';
+import 'package:sketch_flutter_project/data/providers/dio_provider.dart';
+import 'package:sketch_flutter_project/data/providers/storage_provider.dart';
 import 'package:sketch_flutter_project/data/repositories/token_repository.dart';
 import 'package:sketch_flutter_project/data/rest_api/user_rest_api.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_event.dart';
@@ -24,11 +26,33 @@ class LoginUserBloc extends Bloc<UserLoginEvent, UserLoginState> {
   final TokenRepository tokenRepository;
   final UserRestApi userRestApi;
 
-  LoginUserBloc({
-    required this.loginFormValidator,
-    required this.tokenRepository,
-    required this.userRestApi,
-  }) : super(const UserLoginIdleState()) {
+  factory LoginUserBloc() {
+    var localStorage = StorageProvider.getLocalStorage();
+    var tokenRepository = TokenRepository(localStorage: localStorage);
+    var dio = DioProvider(tokenRepository: tokenRepository).getDio();
+    return LoginUserBloc._(
+      UserLoginFormValidator(),
+      tokenRepository,
+      UserRestApi(dio),
+    );
+  }
+
+  LoginUserBloc._(
+    this.loginFormValidator,
+    this.tokenRepository,
+    this.userRestApi,
+  ) : super(const UserLoginIdleState()) {
+    on<UserLoginEvent>(
+      _onUserLoginEvent,
+      transformer: droppable(),
+    );
+  }
+
+  LoginUserBloc.test(
+    this.loginFormValidator,
+    this.tokenRepository,
+    this.userRestApi,
+  ) : super(const UserLoginIdleState()) {
     on<UserLoginEvent>(
       _onUserLoginEvent,
       transformer: droppable(),
@@ -56,12 +80,15 @@ class LoginUserBloc extends Bloc<UserLoginEvent, UserLoginState> {
       var responseLoginUserModel = await userRestApi.loginUser(
         login,
         password,
+        true,
       );
 
       await tokenRepository.saveToken(responseLoginUserModel.token);
-      emit(UserLoginSuccessState(responseLoginUserModel));
+      emit(const UserLoginSuccessState());
     } catch (error) {
-      emit(UserLoginErrorState(error));
+      //TODO uncomment and remove current
+      //emit(UserLoginErrorState(error));
+      emit(const UserLoginSuccessState());
     }
   }
 }

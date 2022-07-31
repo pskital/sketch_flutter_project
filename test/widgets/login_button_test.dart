@@ -2,7 +2,6 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sketch_flutter_project/data/models/response_login_user_model.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_bloc.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_event.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
@@ -84,7 +83,7 @@ void main() {
         mockBloc,
         Stream.fromIterable(
           [
-            UserLoginSuccessState(ResponseLoginUserModel('test')),
+            const UserLoginSuccessState(),
           ],
         ),
         initialState: const UserLoginIdleState());

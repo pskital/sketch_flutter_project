@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/enums/lang_type.dart';
 import 'package:sketch_flutter_project/core/extensions/translation_extension.dart';
+import 'package:sketch_flutter_project/core/keys/keys.dart';
 import 'package:sketch_flutter_project/core/styles/styles.dart';
 import 'package:sketch_flutter_project/logic/localization/language_bloc.dart';
 import 'package:sketch_flutter_project/logic/localization/language_event.dart';
@@ -38,6 +39,7 @@ class SettingsLanguageWidget extends BlocWidget<LanguageBloc, LanguageState> {
         Row(
           children: [
             Radio<LangType>(
+                key: Keys.langTypePlRadioKey,
                 value: LangType.pl,
                 groupValue: bloc.state.langType,
                 onChanged: (langType) => bloc.add(SetLanguageEvent(
@@ -52,6 +54,7 @@ class SettingsLanguageWidget extends BlocWidget<LanguageBloc, LanguageState> {
         Row(
           children: [
             Radio<LangType>(
+                key: Keys.langTypeENRadioKey,
                 value: LangType.en,
                 groupValue: bloc.state.langType,
                 onChanged: (langType) => bloc.add(SetLanguageEvent(
