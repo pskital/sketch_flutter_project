@@ -9,7 +9,7 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
 
   LanguageBloc({
     required this.languageRepository,
-  }) : super(const SetLanguageState(LangType.system)) {
+  }) : super(SetLanguageState(languageRepository.langType)) {
     on<SetSystemLocaleEvent>((event, emit) => _setSystemLocale(event, emit));
     on<SetLanguageEvent>((event, emit) => _setLanguage(event, emit));
   }

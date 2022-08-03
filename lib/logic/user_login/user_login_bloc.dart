@@ -30,25 +30,14 @@ class LoginUserBloc extends Bloc<UserLoginEvent, UserLoginState> {
     var localStorage = StorageProvider.getLocalStorage();
     var tokenRepository = TokenRepository(localStorage: localStorage);
     var dio = DioProvider(tokenRepository: tokenRepository).getDio();
-    return LoginUserBloc._(
+    return LoginUserBloc.create(
       UserLoginFormValidator(),
       tokenRepository,
       UserRestApi(dio),
     );
   }
 
-  LoginUserBloc._(
-    this.loginFormValidator,
-    this.tokenRepository,
-    this.userRestApi,
-  ) : super(const UserLoginIdleState()) {
-    on<UserLoginEvent>(
-      _onUserLoginEvent,
-      transformer: droppable(),
-    );
-  }
-
-  LoginUserBloc.test(
+  LoginUserBloc.create(
     this.loginFormValidator,
     this.tokenRepository,
     this.userRestApi,

@@ -38,7 +38,6 @@ class AppDependencies {
 
     var systemLocales = WidgetsBinding.instance.window.locales;
     await languageRepository.setSystemLocale(systemLocales);
-
     var languageBloc = LanguageBloc(languageRepository: languageRepository);
     this.languageBloc = languageBloc;
   }

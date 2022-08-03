@@ -13,6 +13,7 @@ class SettingsLanguageWidget extends BlocWidget<LanguageBloc, LanguageState> {
 
   @override
   Widget buildWidget(BuildContext context, LanguageBloc bloc) {
+    var langType = bloc.state.langType;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -26,7 +27,7 @@ class SettingsLanguageWidget extends BlocWidget<LanguageBloc, LanguageState> {
           children: [
             Radio<LangType>(
                 value: LangType.system,
-                groupValue: bloc.state.langType,
+                groupValue: langType,
                 onChanged: (langType) => bloc.add(SetLanguageEvent(
                       langType: langType,
                     ))),
@@ -41,7 +42,7 @@ class SettingsLanguageWidget extends BlocWidget<LanguageBloc, LanguageState> {
             Radio<LangType>(
                 key: Keys.langTypePlRadioKey,
                 value: LangType.pl,
-                groupValue: bloc.state.langType,
+                groupValue: langType,
                 onChanged: (langType) => bloc.add(SetLanguageEvent(
                       langType: langType,
                     ))),
@@ -56,7 +57,7 @@ class SettingsLanguageWidget extends BlocWidget<LanguageBloc, LanguageState> {
             Radio<LangType>(
                 key: Keys.langTypeENRadioKey,
                 value: LangType.en,
-                groupValue: bloc.state.langType,
+                groupValue: langType,
                 onChanged: (langType) => bloc.add(SetLanguageEvent(
                       langType: langType,
                     ))),

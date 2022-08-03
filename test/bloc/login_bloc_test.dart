@@ -29,7 +29,7 @@ void main() {
     mockTokenRepository = MockTokenRepository();
     mockUserRestApi = MockUserRestApi();
 
-    loginUserBloc = LoginUserBloc.test(
+    loginUserBloc = LoginUserBloc.create(
       mockLoginFormValidator,
       mockTokenRepository,
       mockUserRestApi,

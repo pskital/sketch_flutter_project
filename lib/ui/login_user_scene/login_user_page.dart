@@ -24,7 +24,7 @@ class _LoginUserPage extends BlocWidget<LoginUserBloc, UserLoginState> {
   @override
   Widget buildWidget(BuildContext context, LoginUserBloc bloc) {
     return Scaffold(
-        appBar: const AppBarWidget(),
+        appBar: AppBarWidget(),
         body: BlocListener<LoginUserBloc, UserLoginState>(
           listener: _loginStateListener,
           child: SafeArea(
@@ -52,7 +52,7 @@ class _LoginUserPage extends BlocWidget<LoginUserBloc, UserLoginState> {
           duration: const Duration(seconds: 2),
         ));
     } else if (state is UserLoginSuccessState) {
-      Navigator.of(context).popAndPushNamed(AppRoute.dashboardPage);
+      Navigator.of(context).pushNamed(AppRoute.dashboardPage);
     }
   }
 }

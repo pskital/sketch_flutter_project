@@ -7,6 +7,7 @@ import 'package:sketch_flutter_project/logic/localization/language_bloc.dart';
 import 'package:sketch_flutter_project/logic/localization/language_event.dart';
 import 'package:sketch_flutter_project/logic/localization/language_state.dart';
 import 'package:sketch_flutter_project/logic/theme/theme_bloc.dart';
+import 'package:sketch_flutter_project/ui/widgets/bloc_state.dart';
 
 class FlutterApp extends StatefulWidget {
   const FlutterApp({
@@ -17,32 +18,28 @@ class FlutterApp extends StatefulWidget {
   State<FlutterApp> createState() => _FlutterAppState();
 }
 
-class _FlutterAppState extends State<FlutterApp> with WidgetsBindingObserver {
+class _FlutterAppState extends BlocState<FlutterApp, ThemeBloc>
+    with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
-    var themeBloc = context.read<ThemeBloc>();
-    var themeMode = themeBloc.getThemeMode();
-    var themeData = themeBloc.getThemeData();
+    var themeMode = bloc.getThemeMode();
+    var themeData = bloc.getThemeData();
     return MultiBlocListener(
       listeners: [
         BlocListener<ThemeBloc, ThemeType>(
-          listener: (context, state) => _rebuildWidget(),
+          listener: (context, state) => setState(() {}),
         ),
         BlocListener<LanguageBloc, LanguageState>(
-          listener: (context, state) => _rebuildWidget(),
+          listener: (context, state) => setState(() {}),
         ),
       ],
-      child: _buildMaterialApp(themeMode, themeData),
-    );
-  }
-
-  MaterialApp _buildMaterialApp(ThemeMode themeMode, ThemeData themeData) {
-    return MaterialApp(
-      themeMode: themeMode,
-      theme: themeData,
-      darkTheme: DarkTheme().get(),
-      routes: AppRoute().appRoutes,
-      initialRoute: AppRoute.loginPage,
+      child: MaterialApp(
+        themeMode: themeMode,
+        theme: themeData,
+        darkTheme: DarkTheme().get(),
+        routes: AppRoute().appRoutes,
+        initialRoute: AppRoute.loginPage,
+      ),
     );
   }
 
@@ -53,12 +50,20 @@ class _FlutterAppState extends State<FlutterApp> with WidgetsBindingObserver {
   }
 
   @override
+  void didUpdateWidget(covariant FlutterApp oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    debugPrint('didUpdateWidget');
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    debugPrint('didChangeDependencies');
+  }
+
+  @override
   void didChangeLocales(List<Locale>? locales) {
     super.didChangeLocales(locales);
     context.read<LanguageBloc>().add(SetSystemLocaleEvent(locales: locales));
-  }
-
-  void _rebuildWidget() {
-    setState(() {});
   }
 }
