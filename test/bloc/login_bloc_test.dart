@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:sketch_flutter_project/data/models/response_login_user_model.dart';
-import 'package:sketch_flutter_project/data/repositories/token_repository.dart';
+import 'package:sketch_flutter_project/data/repositories/token_repository/token_repository.dart';
 import 'package:sketch_flutter_project/data/rest_api/user_rest_api.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_bloc.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_event.dart';
@@ -29,10 +29,10 @@ void main() {
     mockTokenRepository = MockTokenRepository();
     mockUserRestApi = MockUserRestApi();
 
-    loginUserBloc = LoginUserBloc.create(
-      mockLoginFormValidator,
-      mockTokenRepository,
-      mockUserRestApi,
+    loginUserBloc = LoginUserBloc(
+      loginFormValidator: mockLoginFormValidator,
+      tokenRepository: mockTokenRepository,
+      userRestApi: mockUserRestApi,
     );
   });
 

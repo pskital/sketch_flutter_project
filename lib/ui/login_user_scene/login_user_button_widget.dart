@@ -29,7 +29,9 @@ class _LoginUserButtonWidgetState
                 visible: bloc.state is! UserLoginInProgressState,
                 child: ElevatedButton(
                   key: Keys.loginButtonKey,
-                  onPressed: () => bloc.add(const UserLoginEvent()),
+                  onPressed: bloc.state is UserLoginSuccessState
+                      ? null
+                      : () => bloc.add(const UserLoginEvent()),
                   child: Text('login'.tr()),
                 ),
               ),

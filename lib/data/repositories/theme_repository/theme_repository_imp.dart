@@ -4,39 +4,32 @@ import 'package:sketch_flutter_project/core/enums/theme_type.dart';
 import 'package:sketch_flutter_project/core/themes/custom_theme.dart';
 import 'package:sketch_flutter_project/core/themes/dark_theme.dart';
 import 'package:sketch_flutter_project/core/themes/light_theme.dart';
+import 'package:sketch_flutter_project/data/repositories/theme_repository/theme_repository.dart';
 import 'package:sketch_flutter_project/data/storage/local_storage.dart';
 
-class ThemeRepository {
+class ThemeRepositoryImp implements ThemeRepository {
   final LocalStorage localStorage;
 
   late ThemeType _themeType;
 
-  ThemeRepository({required this.localStorage});
+  ThemeRepositoryImp({required this.localStorage});
 
+  @override
   ThemeType get themeType => _themeType;
 
+  @override
   Future<void> initTheme() async {
-    _themeType = await getThemeType();
+    _themeType = await _getThemeType();
   }
 
+  @override
   Future<void> setTheme(ThemeType theme) async {
     var value = theme.value;
-    await saveTheme(value);
+    await _saveTheme(value);
     _themeType = theme;
   }
 
-  Future<void> saveTheme(String theme) async {
-    return await localStorage.saveValue(StorageKeys.themeKey, theme);
-  }
-
-  Future<ThemeType> getThemeType() async {
-    var theme = await localStorage.getValue(StorageKeys.themeKey);
-    return ThemeType.values.firstWhere((t) {
-      var type = t.toString().split('.').last;
-      return type == theme;
-    }, orElse: () => ThemeType.system);
-  }
-
+  @override
   ThemeMode getThemeMode() {
     var type = _themeType;
     switch (type) {
@@ -52,6 +45,7 @@ class ThemeRepository {
     }
   }
 
+  @override
   ThemeData getThemeData() {
     var type = _themeType;
     switch (type) {
@@ -64,5 +58,17 @@ class ThemeRepository {
       default:
         return LightTheme().get();
     }
+  }
+
+  Future<void> _saveTheme(String theme) async {
+    return await localStorage.saveValue(StorageKeys.themeKey, theme);
+  }
+
+  Future<ThemeType> _getThemeType() async {
+    var theme = await localStorage.getValue(StorageKeys.themeKey);
+    return ThemeType.values.firstWhere((t) {
+      var type = t.toString().split('.').last;
+      return type == theme;
+    }, orElse: () => ThemeType.system);
   }
 }

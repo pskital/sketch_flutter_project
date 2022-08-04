@@ -4,10 +4,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:sketch_flutter_project/core/enums/lang_type.dart';
 import 'package:sketch_flutter_project/core/utils/asset_loader.dart';
-import 'package:sketch_flutter_project/data/repositories/language_repository.dart';
-import 'package:sketch_flutter_project/logic/localization/language_bloc.dart';
-import 'package:sketch_flutter_project/logic/localization/language_event.dart';
-import 'package:sketch_flutter_project/logic/localization/language_state.dart';
+import 'package:sketch_flutter_project/data/repositories/language_repository/language_repository.dart';
+import 'package:sketch_flutter_project/logic/language/language_bloc.dart';
+import 'package:sketch_flutter_project/logic/language/language_event.dart';
+import 'package:sketch_flutter_project/logic/language/language_state.dart';
 
 class MockLanguageRepository extends Mock implements LanguageRepository {}
 

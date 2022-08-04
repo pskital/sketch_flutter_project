@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:sketch_flutter_project/data/repositories/token_repository.dart';
+import 'package:sketch_flutter_project/data/repositories/token_repository/token_repository.dart';
 
 class DioProvider {
   final TokenRepository tokenRepository;

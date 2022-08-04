@@ -6,9 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/extensions/translation_extension.dart';
 import 'package:sketch_flutter_project/core/utils/keyboard_utils.dart';
-import 'package:sketch_flutter_project/data/providers/dio_provider.dart';
-import 'package:sketch_flutter_project/data/providers/storage_provider.dart';
-import 'package:sketch_flutter_project/data/repositories/token_repository.dart';
+import 'package:sketch_flutter_project/data/repositories/token_repository/token_repository.dart';
 import 'package:sketch_flutter_project/data/rest_api/user_rest_api.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_event.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_form_validator.dart';
@@ -26,22 +24,11 @@ class LoginUserBloc extends Bloc<UserLoginEvent, UserLoginState> {
   final TokenRepository tokenRepository;
   final UserRestApi userRestApi;
 
-  factory LoginUserBloc() {
-    var localStorage = StorageProvider.getLocalStorage();
-    var tokenRepository = TokenRepository(localStorage: localStorage);
-    var dio = DioProvider(tokenRepository: tokenRepository).getDio();
-    return LoginUserBloc.create(
-      UserLoginFormValidator(),
-      tokenRepository,
-      UserRestApi(dio),
-    );
-  }
-
-  LoginUserBloc.create(
-    this.loginFormValidator,
-    this.tokenRepository,
-    this.userRestApi,
-  ) : super(const UserLoginIdleState()) {
+  LoginUserBloc({
+    required this.loginFormValidator,
+    required this.tokenRepository,
+    required this.userRestApi,
+  }) : super(const UserLoginIdleState()) {
     on<UserLoginEvent>(
       _onUserLoginEvent,
       transformer: droppable(),

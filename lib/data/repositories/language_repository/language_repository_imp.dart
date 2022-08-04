@@ -3,9 +3,10 @@ import 'package:sketch_flutter_project/core/constants/storage_keys.dart';
 import 'package:sketch_flutter_project/core/enums/lang_type.dart';
 import 'package:sketch_flutter_project/core/utils/asset_loader.dart';
 import 'package:sketch_flutter_project/core/utils/translations.dart';
+import 'package:sketch_flutter_project/data/repositories/language_repository/language_repository.dart';
 import 'package:sketch_flutter_project/data/storage/local_storage.dart';
 
-class LanguageRepository {
+class LanguageRepositoryImp implements LanguageRepository {
   final _defaultLocale = const Locale('en', 'EN');
 
   final _supportedLocales = [
@@ -13,19 +14,22 @@ class LanguageRepository {
     const Locale('en', 'EN'),
   ];
 
-  LangType langType = LangType.system;
   Locale? _systemLocale;
 
   final RootBundleAssetLoader assetLoader;
   final LocalStorage localStorage;
 
-  LanguageRepository({
+  @override
+  LangType langType = LangType.system;
+
+  LanguageRepositoryImp({
     required this.localStorage,
     required this.assetLoader,
   }) {
     langType = _getLangType();
   }
 
+  @override
   setLanguage(LangType langType) async {
     var value = langType.value;
     this.langType = langType;
@@ -34,6 +38,7 @@ class LanguageRepository {
     await _loadTranslations();
   }
 
+  @override
   setSystemLocale(List<Locale>? locales) async {
     if (locales != null && locales.isNotEmpty) {
       _systemLocale = locales.first;
@@ -41,7 +46,7 @@ class LanguageRepository {
     }
   }
 
-  Locale getLocale() {
+  Locale _getLocale() {
     Locale? locale;
 
     switch (langType) {
@@ -80,7 +85,7 @@ class LanguageRepository {
   }
 
   _loadTranslations() async {
-    var code = getLocale().languageCode;
+    var code = _getLocale().languageCode;
     var data = await assetLoader.load('assets/translations', Locale(code));
     Translations.translations = Map<String, String>.from(data);
   }

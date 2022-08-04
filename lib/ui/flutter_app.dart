@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sketch_flutter_project/core/enums/theme_type.dart';
 import 'package:sketch_flutter_project/core/route/app_route.dart';
 import 'package:sketch_flutter_project/core/themes/dark_theme.dart';
-import 'package:sketch_flutter_project/logic/localization/language_bloc.dart';
-import 'package:sketch_flutter_project/logic/localization/language_event.dart';
-import 'package:sketch_flutter_project/logic/localization/language_state.dart';
+import 'package:sketch_flutter_project/logic/language/language_bloc.dart';
+import 'package:sketch_flutter_project/logic/language/language_event.dart';
+import 'package:sketch_flutter_project/logic/language/language_state.dart';
 import 'package:sketch_flutter_project/logic/theme/theme_bloc.dart';
 import 'package:sketch_flutter_project/ui/widgets/bloc_state.dart';
 

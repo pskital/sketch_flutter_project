@@ -26,6 +26,10 @@ dependencies:
   json_annotation: 4.6.0
   dio: 4.0.6
 
+  #service locator
+  get_it: 7.2.0
+
+  #svg image loader
   flutter_svg: 1.1.1+1
 
 dev_dependencies:

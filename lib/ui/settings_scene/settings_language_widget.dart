@@ -3,9 +3,9 @@ import 'package:sketch_flutter_project/core/enums/lang_type.dart';
 import 'package:sketch_flutter_project/core/extensions/translation_extension.dart';
 import 'package:sketch_flutter_project/core/keys/keys.dart';
 import 'package:sketch_flutter_project/core/styles/styles.dart';
-import 'package:sketch_flutter_project/logic/localization/language_bloc.dart';
-import 'package:sketch_flutter_project/logic/localization/language_event.dart';
-import 'package:sketch_flutter_project/logic/localization/language_state.dart';
+import 'package:sketch_flutter_project/logic/language/language_bloc.dart';
+import 'package:sketch_flutter_project/logic/language/language_event.dart';
+import 'package:sketch_flutter_project/logic/language/language_state.dart';
 import 'package:sketch_flutter_project/ui/widgets/bloc_widget.dart';
 
 class SettingsLanguageWidget extends BlocWidget<LanguageBloc, LanguageState> {
