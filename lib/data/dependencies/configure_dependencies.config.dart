@@ -53,15 +53,15 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.factory<String>(() => appModule.prodApiUrl,
       instanceName: 'apiUrl', registerFor: {_prod});
   gh.factory<_i5.UserLoginFormValidator>(() => _i5.UserLoginFormValidator());
-  await gh.factoryAsync<_i6.LocalStorage>(
+  await gh.singletonAsync<_i6.LocalStorage>(
       () => appModule.provideLocalStorage(get<_i4.SharedPreferencesStorage>()),
       preResolve: true);
   gh.factory<_i7.ThemeRepositoryImp>(
       () => _i7.ThemeRepositoryImp(localStorage: get<_i6.LocalStorage>()));
   gh.factory<_i8.TokenRepository>(
       () => _i9.TokenRepositoryImp(localStorage: get<_i6.LocalStorage>()));
-  gh.factory<_i10.DioProvider>(
-      () => _i10.DioProvider(tokenRepository: get<_i8.TokenRepository>()));
+  gh.singleton<_i10.DioProvider>(
+      _i10.DioProvider(tokenRepository: get<_i8.TokenRepository>()));
   gh.factory<_i11.LanguageRepositoryImp>(() => _i11.LanguageRepositoryImp(
       localStorage: get<_i6.LocalStorage>(),
       assetLoader: get<_i3.RootBundleAssetLoader>()));

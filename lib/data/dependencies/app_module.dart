@@ -20,6 +20,7 @@ abstract class AppModule {
   String get prodApiUrl => 'https://automaniak.azurewebsites.net/';
 
   @preResolve
+  @singleton
   Future<LocalStorage> provideLocalStorage(
     SharedPreferencesStorage sharedPreferencesStorage,
   ) async {

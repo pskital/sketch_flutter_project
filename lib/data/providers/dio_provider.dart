@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sketch_flutter_project/data/repositories/token_repository/token_repository.dart';
 
-@injectable
+@singleton
 class DioProvider {
   final TokenRepository tokenRepository;
 
