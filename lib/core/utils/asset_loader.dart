@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:injectable/injectable.dart';
 
 Locale localeFromString(String localeString) {
   final localeList = localeString.split('_');
@@ -29,6 +30,7 @@ abstract class AssetLoader {
 }
 
 @immutable
+@injectable
 class RootBundleAssetLoader extends AssetLoader {
   const RootBundleAssetLoader();
 

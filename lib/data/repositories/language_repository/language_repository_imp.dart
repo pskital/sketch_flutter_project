@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 import 'package:sketch_flutter_project/core/constants/storage_keys.dart';
 import 'package:sketch_flutter_project/core/enums/lang_type.dart';
 import 'package:sketch_flutter_project/core/utils/asset_loader.dart';
@@ -6,6 +7,7 @@ import 'package:sketch_flutter_project/core/utils/translations.dart';
 import 'package:sketch_flutter_project/data/repositories/language_repository/language_repository.dart';
 import 'package:sketch_flutter_project/data/storage/local_storage.dart';
 
+@injectable
 class LanguageRepositoryImp implements LanguageRepository {
   final _defaultLocale = const Locale('en', 'EN');
 

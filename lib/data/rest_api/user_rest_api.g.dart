@@ -9,9 +9,7 @@ part of 'user_rest_api.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps
 
 class _UserRestApi implements UserRestApi {
-  _UserRestApi(this._dio, {this.baseUrl}) {
-    baseUrl ??= 'https://automaniak.azurewebsites.net/';
-  }
+  _UserRestApi(this._dio, {this.baseUrl});
 
   final Dio _dio;
 

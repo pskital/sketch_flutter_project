@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sketch_flutter_project/core/constants/paddings.dart';
 import 'package:sketch_flutter_project/core/route/app_route.dart';
-import 'package:sketch_flutter_project/data/dependencies/app_dependencies.dart'
-    as dependencies;
+import 'package:sketch_flutter_project/data/dependencies/configure_dependencies.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_bloc.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
 import 'package:sketch_flutter_project/ui/login_user_scene/login_input_widget.dart';
@@ -16,7 +15,7 @@ class LoginUserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => dependencies.serviceLocator<LoginUserBloc>(),
+      create: (_) => serviceLocator<LoginUserBloc>(),
       child: _LoginUserPage(),
     );
   }

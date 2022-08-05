@@ -1,10 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:sketch_flutter_project/core/enums/lang_type.dart';
 import 'package:sketch_flutter_project/data/repositories/language_repository/language_repository.dart';
 import 'package:sketch_flutter_project/logic/language/language_event.dart';
 import 'package:sketch_flutter_project/logic/language/language_state.dart';
 
-
+@injectable
 class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
   final LanguageRepository languageRepository;
 

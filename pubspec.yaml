@@ -28,11 +28,13 @@ dependencies:
 
   #service locator
   get_it: 7.2.0
+  injectable: 1.5.3
 
   #svg image loader
   flutter_svg: 1.1.1+1
 
 dev_dependencies:
+  injectable_generator: 1.5.4
   retrofit_generator: 4.0.3
   json_serializable: 6.3.1
   build_runner: 2.2.0

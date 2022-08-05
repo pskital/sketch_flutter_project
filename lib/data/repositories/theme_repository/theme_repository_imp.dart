@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 import 'package:sketch_flutter_project/core/constants/storage_keys.dart';
 import 'package:sketch_flutter_project/core/enums/theme_type.dart';
 import 'package:sketch_flutter_project/core/themes/custom_theme.dart';
@@ -7,6 +8,7 @@ import 'package:sketch_flutter_project/core/themes/light_theme.dart';
 import 'package:sketch_flutter_project/data/repositories/theme_repository/theme_repository.dart';
 import 'package:sketch_flutter_project/data/storage/local_storage.dart';
 
+@injectable
 class ThemeRepositoryImp implements ThemeRepository {
   final LocalStorage localStorage;
 

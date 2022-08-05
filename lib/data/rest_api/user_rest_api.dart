@@ -5,8 +5,7 @@ import 'package:sketch_flutter_project/data/models/response_login_user_model.dar
 part 'user_rest_api.g.dart';
 
 //flutter pub run build_runner build --delete-conflicting-outputs
-
-@RestApi(baseUrl: 'https://automaniak.azurewebsites.net/')
+@RestApi()
 abstract class UserRestApi {
   factory UserRestApi(Dio dio, {String baseUrl}) = _UserRestApi;
 

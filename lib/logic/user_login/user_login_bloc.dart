@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 import 'package:sketch_flutter_project/core/extensions/translation_extension.dart';
 import 'package:sketch_flutter_project/core/utils/keyboard_utils.dart';
 import 'package:sketch_flutter_project/data/repositories/token_repository/token_repository.dart';
@@ -12,6 +13,7 @@ import 'package:sketch_flutter_project/logic/user_login/user_login_event.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_form_validator.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
 
+@injectable
 class LoginUserBloc extends Bloc<UserLoginEvent, UserLoginState> {
   final emailTextController = TextEditingController(
     text: kReleaseMode ? '' : 'test@gmail.com',
