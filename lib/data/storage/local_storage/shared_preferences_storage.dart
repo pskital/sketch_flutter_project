@@ -2,7 +2,7 @@ import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sketch_flutter_project/data/storage/local_storage.dart';
 
-@Singleton()
+@singleton
 class SharedPreferencesStorage implements LocalStorage {
   late SharedPreferences _sharedPreferences;
 

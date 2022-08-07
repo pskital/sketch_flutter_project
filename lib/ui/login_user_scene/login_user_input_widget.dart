@@ -5,8 +5,8 @@ import 'package:sketch_flutter_project/logic/user_login/user_login_bloc.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
 import 'package:sketch_flutter_project/ui/widgets/bloc_widget.dart';
 
-class LoginPasswordInputWidget
-    extends BlocWidget<LoginUserBloc, UserLoginState> {
+class LoginInputWidget extends BlocWidget<LoginUserBloc, UserLoginState?> {
+
   @override
   buildWidget(BuildContext context, LoginUserBloc bloc) {
     return Column(
@@ -14,20 +14,19 @@ class LoginPasswordInputWidget
       children: [
         const SizedBox(height: 10),
         Text(
-          'password'.tr(),
+          'login'.tr(),
           style: Styles.headerTextStyle(context),
         ),
         const SizedBox(height: 10),
         TextFormField(
-          textInputAction: TextInputAction.done,
+          textInputAction: TextInputAction.next,
           minLines: 1,
           maxLines: 1,
           autocorrect: false,
-          obscureText: true,
-          keyboardType: TextInputType.visiblePassword,
-          validator: bloc.loginFormValidator.passwordValidator,
+          keyboardType: TextInputType.emailAddress,
+          validator: bloc.loginFormValidator.emailValidator,
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          controller: bloc.passwordTextController,
+          controller: bloc.emailTextController,
         ),
       ],
     );

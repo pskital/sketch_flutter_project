@@ -16,6 +16,10 @@
   "loginError": "Wystąpił błąd podczas logowania",
   "invalidCredentials": "Nieprawidłowe dane logowania",
   "settings": "Ustawienia",
-  "homeNested": "Zagnieżdźenie"
-
+  "passwordRecovery": "Odzyskiwanie hasła",
+  "homeNested": "Podstrona/zagnieżdzenie",
+  "send": "Wyślij",
+  "passwordRecoverySuccessMessage": "Odzyskiwanie hasła zakonczone powodzeniem",
+  "recoveryPasswordErrorMessage": "Błąd odzyskiwania hasła",
+  "email": "Email"
 }

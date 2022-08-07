@@ -4,12 +4,11 @@ import 'package:sketch_flutter_project/ui/settings_scene/settings_language_widge
 import 'package:sketch_flutter_project/ui/settings_scene/settings_theme_widget.dart';
 
 class SettingsPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.all(Paddings.pagePadding),
-      children: const [
+      children: [
         SettingThemeWidget(),
         SettingsLanguageWidget(),
       ],

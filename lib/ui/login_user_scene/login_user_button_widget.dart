@@ -12,10 +12,10 @@ class LoginUserButtonWidget extends StatefulWidget {
   State<LoginUserButtonWidget> createState() => _LoginUserButtonWidgetState();
 }
 
-class _LoginUserButtonWidgetState
-    extends BlocState<LoginUserButtonWidget, LoginUserBloc> {
+class _LoginUserButtonWidgetState extends BlocState<LoginUserButtonWidget> {
   @override
   Widget build(BuildContext context) {
+    var bloc = getBloc<LoginUserBloc>();
     return BlocListener<LoginUserBloc, UserLoginState>(
       listener: (context, state) => setState(() {}),
       child: Column(

@@ -16,5 +16,10 @@
   "loginError": "Login error",
   "invalidCredentials": "Invalid login credentials",
   "settings": "Settings",
+  "passwordRecovery": "Password recovery",
+  "email": "Email",
+  "send": "Send",
+  "passwordRecoverySuccessMessage": "Recovery password success",
+  "recoveryPasswordErrorMessage": "Recovery password error",
   "homeNested": "Home nested"
 }

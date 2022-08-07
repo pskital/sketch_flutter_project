@@ -26,7 +26,7 @@ void main() {
     mockBloc = MockLoginUserBloc();
   });
 
-  testWidgets('test login button check is visible when idle state',
+  testWidgets('test login button check is visible when idle password_recovery',
       (tester) async {
     whenListen<UserLoginState>(
         mockBloc,
@@ -42,7 +42,7 @@ void main() {
     expect(find.byType(CircularProgressIndicator), findsNothing);
   });
 
-  testWidgets('test login button check is visible when error state',
+  testWidgets('test login button check is visible when error password_recovery',
       (tester) async {
     whenListen<UserLoginState>(
         mockBloc,

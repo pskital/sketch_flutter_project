@@ -11,7 +11,13 @@ abstract class UserRestApi {
 
   @POST('/api/User/LoginUser')
   Future<ResponseLoginUserModel> loginUser(
-      @Query('login') String login,
-      @Query('password') String password,
-      @Query('isPrivacyAccepted') bool isPrivacyAccepted);
+    @Field('login') String login,
+    @Field('password') String password,
+    @Field('isPrivacyAccepted') bool isPrivacyAccepted,
+  );
+
+  @POST('/api/User/RecoveryPassword')
+  Future<ResponseLoginUserModel> recoveryPassword(
+    @Field('email') String email,
+  );
 }

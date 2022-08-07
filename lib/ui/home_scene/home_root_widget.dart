@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/logic/dashboard/dashboard_bloc.dart';
-import 'package:sketch_flutter_project/ui/home/home_nested_page.dart';
-import 'package:sketch_flutter_project/ui/home/home_page.dart';
+import 'package:sketch_flutter_project/ui/home_scene/home_nested_page.dart';
+import 'package:sketch_flutter_project/ui/home_scene/home_page.dart';
 import 'package:sketch_flutter_project/ui/widgets/bloc_widget.dart';
 
 class HomeRootWidget extends BlocWidget<DashboardBloc, int> {

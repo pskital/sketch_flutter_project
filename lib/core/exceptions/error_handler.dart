@@ -6,7 +6,7 @@ import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
 
 mixin ErrorHandler {
   String handleError(ErrorState errorState) {
-    Object error = errorState.getError();
+    Object? error = errorState.getError();
     debugPrint(error.toString());
 
     if (error is DioError) {

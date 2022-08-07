@@ -1,5 +1,5 @@
 abstract class ErrorState {
   String getErrorMessage();
 
-  Object getError();
+  Object? getError();
 }

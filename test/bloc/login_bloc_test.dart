@@ -7,7 +7,7 @@ import 'package:sketch_flutter_project/data/repositories/token_repository/token_
 import 'package:sketch_flutter_project/data/rest_api/user_rest_api.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_bloc.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_event.dart';
-import 'package:sketch_flutter_project/logic/user_login/user_login_form_validator.dart';
+import 'package:sketch_flutter_project/core/validation/user_login_form_validator.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
 
 class MockLoginFormValidator extends Mock implements UserLoginFormValidator {}
@@ -38,7 +38,7 @@ void main() {
 
   blocTest<LoginUserBloc, UserLoginState?>('test incorrect login credentials',
       setUp: () {
-        when(() => mockLoginFormValidator.isLoginFormValid()).thenReturn(false);
+        when(() => mockLoginFormValidator.isFormValid()).thenReturn(false);
       },
       wait: const Duration(milliseconds: 700),
       build: () => loginUserBloc,
@@ -53,7 +53,7 @@ void main() {
   var responseLoginUserModel = ResponseLoginUserModel('token');
   blocTest<LoginUserBloc, UserLoginState?>('test login success request',
       setUp: () {
-        when(() => mockLoginFormValidator.isLoginFormValid()).thenReturn(true);
+        when(() => mockLoginFormValidator.isFormValid()).thenReturn(true);
         when(() => mockUserRestApi.loginUser('test@gmail.com', 'test123', true))
             .thenAnswer((_) async => Future.value(responseLoginUserModel));
         when(() => mockTokenRepository.saveToken(responseLoginUserModel.token))

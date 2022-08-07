@@ -19,17 +19,33 @@ class _UserRestApi implements UserRestApi {
   Future<ResponseLoginUserModel> loginUser(
       login, password, isPrivacyAccepted) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'login': login,
-      r'password': password,
-      r'isPrivacyAccepted': isPrivacyAccepted
-    };
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final _data = {
+      'login': login,
+      'password': password,
+      'isPrivacyAccepted': isPrivacyAccepted
+    };
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<ResponseLoginUserModel>(
             Options(method: 'POST', headers: _headers, extra: _extra)
                 .compose(_dio.options, '/api/User/LoginUser',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseLoginUserModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ResponseLoginUserModel> recoveryPassword(email) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = {'email': email};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ResponseLoginUserModel>(
+            Options(method: 'POST', headers: _headers, extra: _extra)
+                .compose(_dio.options, '/api/User/RecoveryPassword',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ResponseLoginUserModel.fromJson(_result.data!);

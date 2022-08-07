@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sketch_flutter_project/core/constants/strings.dart';
 import 'package:sketch_flutter_project/logic/dashboard/dashboard_bloc.dart';
-import 'package:sketch_flutter_project/ui/home/home_root_widget.dart';
+import 'package:sketch_flutter_project/ui/home_scene/home_root_widget.dart';
 import 'package:sketch_flutter_project/ui/settings_scene/settings_page.dart';
 import 'package:sketch_flutter_project/ui/widgets/bloc_builder_widget.dart';
 
@@ -39,7 +39,6 @@ class _DashboardPage extends BlocBuilderWidget<DashboardBloc, int> {
             label: Strings.settings,
           ),
         ],
-
         onTap: bloc.setCurrentPage,
       ),
     );

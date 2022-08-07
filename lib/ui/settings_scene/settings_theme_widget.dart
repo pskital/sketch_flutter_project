@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/enums/theme_type.dart';
 import 'package:sketch_flutter_project/core/extensions/translation_extension.dart';
 import 'package:sketch_flutter_project/core/styles/styles.dart';
+import 'package:sketch_flutter_project/logic/theme/theme_action.dart';
 import 'package:sketch_flutter_project/logic/theme/theme_bloc.dart';
 import 'package:sketch_flutter_project/ui/widgets/bloc_widget.dart';
 
 class SettingThemeWidget extends BlocWidget<ThemeBloc, ThemeType> {
-  const SettingThemeWidget({Key? key}) : super(key: key);
-
   @override
   Widget buildWidget(BuildContext context, ThemeBloc bloc) {
     return Column(
@@ -22,9 +21,10 @@ class SettingThemeWidget extends BlocWidget<ThemeBloc, ThemeType> {
         Row(
           children: [
             Radio<ThemeType>(
-                value: ThemeType.system,
-                groupValue: bloc.state,
-                onChanged: (theme) => bloc.setTheme(theme)),
+              value: ThemeType.system,
+              groupValue: bloc.state,
+              onChanged: (themeType) => _changeTheme(themeType, bloc),
+            ),
             Text(
               'appAppearanceSystem'.tr(),
               style: Styles.bodyTextStyle(context),
@@ -34,9 +34,10 @@ class SettingThemeWidget extends BlocWidget<ThemeBloc, ThemeType> {
         Row(
           children: [
             Radio<ThemeType>(
-                value: ThemeType.light,
-                groupValue: bloc.state,
-                onChanged: (theme) => bloc.setTheme(theme)),
+              value: ThemeType.light,
+              groupValue: bloc.state,
+              onChanged: (themeType) => _changeTheme(themeType, bloc),
+            ),
             Text(
               'appAppearanceLight'.tr(),
               style: Styles.bodyTextStyle(context),
@@ -46,9 +47,10 @@ class SettingThemeWidget extends BlocWidget<ThemeBloc, ThemeType> {
         Row(
           children: [
             Radio<ThemeType>(
-                value: ThemeType.dark,
-                groupValue: bloc.state,
-                onChanged: (theme) => bloc.setTheme(theme)),
+              value: ThemeType.dark,
+              groupValue: bloc.state,
+              onChanged: (themeType) => _changeTheme(themeType, bloc),
+            ),
             Text(
               'appAppearanceDark'.tr(),
               style: Styles.bodyTextStyle(context),
@@ -58,9 +60,10 @@ class SettingThemeWidget extends BlocWidget<ThemeBloc, ThemeType> {
         Row(
           children: [
             Radio<ThemeType>(
-                value: ThemeType.custom,
-                groupValue: bloc.state,
-                onChanged: (theme) => bloc.setTheme(theme)),
+              value: ThemeType.custom,
+              groupValue: bloc.state,
+              onChanged: (themeType) => _changeTheme(themeType, bloc),
+            ),
             Text(
               'appAppearanceCustom'.tr(),
               style: Styles.bodyTextStyle(context),
@@ -72,5 +75,9 @@ class SettingThemeWidget extends BlocWidget<ThemeBloc, ThemeType> {
         const SizedBox(height: 10),
       ],
     );
+  }
+
+  void _changeTheme(ThemeType? themeType, ThemeBloc bloc) {
+    bloc.add(ChangeThemeAction(themeType: themeType));
   }
 }

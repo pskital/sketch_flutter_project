@@ -9,7 +9,6 @@ import 'package:sketch_flutter_project/logic/language/language_state.dart';
 import 'package:sketch_flutter_project/ui/widgets/bloc_widget.dart';
 
 class SettingsLanguageWidget extends BlocWidget<LanguageBloc, LanguageState> {
-  const SettingsLanguageWidget({Key? key}) : super(key: key);
 
   @override
   Widget buildWidget(BuildContext context, LanguageBloc bloc) {

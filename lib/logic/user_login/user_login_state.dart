@@ -40,7 +40,7 @@ class UserLoginErrorState extends UserLoginState
   }
 
   @override
-  Object getError() {
+  Object? getError() {
     return error;
   }
 }

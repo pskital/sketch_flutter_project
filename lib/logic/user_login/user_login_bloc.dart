@@ -10,7 +10,7 @@ import 'package:sketch_flutter_project/core/utils/keyboard_utils.dart';
 import 'package:sketch_flutter_project/data/repositories/token_repository/token_repository.dart';
 import 'package:sketch_flutter_project/data/rest_api/user_rest_api.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_event.dart';
-import 'package:sketch_flutter_project/logic/user_login/user_login_form_validator.dart';
+import 'package:sketch_flutter_project/core/validation/user_login_form_validator.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
 
 @injectable
@@ -43,7 +43,7 @@ class LoginUserBloc extends Bloc<UserLoginEvent, UserLoginState> {
   ) async {
     emit(const UserLoginInProgressState());
 
-    if (!loginFormValidator.isLoginFormValid()) {
+    if (!loginFormValidator.isFormValid()) {
       emit(UserLoginErrorState('invalidCredentials'.tr()));
       return;
     }

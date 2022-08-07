@@ -8,8 +8,14 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:sketch_flutter_project/core/utils/asset_loader.dart' as _i3;
-import 'package:sketch_flutter_project/data/dependencies/app_module.dart'
+import 'package:sketch_flutter_project/core/validation/user_login_form_validator.dart'
+    as _i5;
+import 'package:sketch_flutter_project/data/dependencies/modules/api_module.dart'
     as _i18;
+import 'package:sketch_flutter_project/data/dependencies/modules/app_module.dart'
+    as _i19;
+import 'package:sketch_flutter_project/data/dependencies/modules/repository_module.dart'
+    as _i20;
 import 'package:sketch_flutter_project/data/providers/dio_provider.dart'
     as _i10;
 import 'package:sketch_flutter_project/data/repositories/language_repository/language_repository.dart'
@@ -34,8 +40,6 @@ import 'package:sketch_flutter_project/logic/language/language_bloc.dart'
 import 'package:sketch_flutter_project/logic/theme/theme_bloc.dart' as _i16;
 import 'package:sketch_flutter_project/logic/user_login/user_login_bloc.dart'
     as _i15;
-import 'package:sketch_flutter_project/logic/user_login/user_login_form_validator.dart'
-    as _i5;
 
 const String _dev = 'dev';
 const String _prod = 'prod';
@@ -45,12 +49,14 @@ const String _prod = 'prod';
 Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
     {String? environment, _i2.EnvironmentFilter? environmentFilter}) async {
   final gh = _i2.GetItHelper(get, environment, environmentFilter);
+  final apiModule = _$ApiModule();
   final appModule = _$AppModule();
+  final repositoryModule = _$RepositoryModule();
   gh.factory<_i3.RootBundleAssetLoader>(() => _i3.RootBundleAssetLoader());
   gh.singleton<_i4.SharedPreferencesStorage>(_i4.SharedPreferencesStorage());
-  gh.factory<String>(() => appModule.devApiUrl,
+  gh.factory<String>(() => apiModule.devApiUrl,
       instanceName: 'apiUrl', registerFor: {_dev});
-  gh.factory<String>(() => appModule.prodApiUrl,
+  gh.factory<String>(() => apiModule.prodApiUrl,
       instanceName: 'apiUrl', registerFor: {_prod});
   gh.factory<_i5.UserLoginFormValidator>(() => _i5.UserLoginFormValidator());
   await gh.singletonAsync<_i6.LocalStorage>(
@@ -66,12 +72,13 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       localStorage: get<_i6.LocalStorage>(),
       assetLoader: get<_i3.RootBundleAssetLoader>()));
   await gh.factoryAsync<_i12.ThemeRepository>(
-      () => appModule.provideThemeRepository(get<_i7.ThemeRepositoryImp>()),
+      () => repositoryModule
+          .provideThemeRepository(get<_i7.ThemeRepositoryImp>()),
       preResolve: true);
-  gh.factory<_i13.UserRestApi>(() => appModule.provideUserRestApi(
+  gh.factory<_i13.UserRestApi>(() => apiModule.provideUserRestApi(
       get<String>(instanceName: 'apiUrl'), get<_i10.DioProvider>()));
   await gh.factoryAsync<_i14.LanguageRepository>(
-      () => appModule
+      () => repositoryModule
           .provideLanguageRepository(get<_i11.LanguageRepositoryImp>()),
       preResolve: true);
   gh.factory<_i15.LoginUserBloc>(() => _i15.LoginUserBloc(
@@ -85,4 +92,8 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   return get;
 }
 
-class _$AppModule extends _i18.AppModule {}
+class _$ApiModule extends _i18.ApiModule {}
+
+class _$AppModule extends _i19.AppModule {}
+
+class _$RepositoryModule extends _i20.RepositoryModule {}
