@@ -46,7 +46,7 @@ void main() {
         bloc.add(const UserLoginEvent());
       },
       expect: () => [
-            const UserLoginInProgressState(),
+            UserLoginInProgressState(),
             const UserLoginErrorState('invalidCredentials'),
           ]);
 
@@ -65,7 +65,8 @@ void main() {
         bloc.add(const UserLoginEvent());
       },
       expect: () => [
-            const UserLoginInProgressState(),
+            UserLoginInProgressState(),
             const UserLoginSuccessState(),
+            const UserLoginIdleState()
           ]);
 }

@@ -56,7 +56,7 @@ class _LoginUserPage extends BlocWidget<LoginUserBloc, UserLoginState> {
           duration: const Duration(seconds: 2),
         ));
     } else if (state is UserLoginSuccessState) {
-      Navigator.of(context).pushNamed(AppRoute.dashboardPage);
+      Navigator.of(context).pushNamed(AppRoute.loginPage);
     }
   }
 }

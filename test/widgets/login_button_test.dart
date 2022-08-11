@@ -26,7 +26,7 @@ void main() {
     mockBloc = MockLoginUserBloc();
   });
 
-  testWidgets('test login button check is visible when idle password_recovery',
+  testWidgets('test login button check is visible when idle state',
       (tester) async {
     whenListen<UserLoginState>(
         mockBloc,
@@ -42,7 +42,7 @@ void main() {
     expect(find.byType(CircularProgressIndicator), findsNothing);
   });
 
-  testWidgets('test login button check is visible when error password_recovery',
+  testWidgets('test login button check is visible when error state',
       (tester) async {
     whenListen<UserLoginState>(
         mockBloc,
@@ -64,7 +64,7 @@ void main() {
         mockBloc,
         Stream.fromIterable(
           [
-            const UserLoginInProgressState(),
+            UserLoginInProgressState(),
           ],
         ),
         initialState: const UserLoginIdleState());

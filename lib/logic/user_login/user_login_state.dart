@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/exceptions/error_handler.dart';
 import 'package:sketch_flutter_project/core/exceptions/error_state.dart';
+import 'package:sketch_flutter_project/core/utils/keyboard_utils.dart';
 
 @immutable
 abstract class UserLoginState extends Equatable {
@@ -18,7 +19,9 @@ class UserLoginIdleState extends UserLoginState {
 
 @immutable
 class UserLoginInProgressState extends UserLoginState {
-  const UserLoginInProgressState();
+  UserLoginInProgressState() {
+    KeyboardUtils.hideKeyboard();
+  }
 }
 
 @immutable

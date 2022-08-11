@@ -33,4 +33,9 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
       emit(SetSystemLocalesState(LangType.system));
     }
   }
+
+  @override
+  Future<void> close() {
+    return super.close();
+  }
 }
