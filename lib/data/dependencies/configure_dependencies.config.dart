@@ -7,9 +7,9 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:sketch_flutter_project/core/utils/asset_loader.dart' as _i3;
-import 'package:sketch_flutter_project/core/validation/user_login_form_validator.dart'
+import 'package:sketch_flutter_project/core/form_validation/user_login_form_validator.dart'
     as _i5;
+import 'package:sketch_flutter_project/core/utils/app_translations.dart' as _i3;
 import 'package:sketch_flutter_project/data/dependencies/modules/api_module.dart'
     as _i18;
 import 'package:sketch_flutter_project/data/dependencies/modules/app_module.dart'
@@ -51,7 +51,7 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   final apiModule = _$ApiModule();
   final appModule = _$AppModule();
   final repositoryModule = _$RepositoryModule();
-  gh.factory<_i3.RootBundleAssetLoader>(() => _i3.RootBundleAssetLoader());
+  gh.singleton<_i3.AppTranslations>(_i3.AppTranslations());
   gh.singleton<_i4.SharedPreferencesStorage>(_i4.SharedPreferencesStorage());
   gh.factory<String>(() => apiModule.devApiUrl,
       instanceName: 'apiUrl', registerFor: {_dev});
@@ -67,9 +67,8 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       () => _i9.TokenRepositoryImp(localStorage: get<_i6.LocalStorage>()));
   gh.singleton<_i10.DioProvider>(
       _i10.DioProvider(tokenRepository: get<_i8.TokenRepository>()));
-  gh.factory<_i11.LanguageRepositoryImp>(() => _i11.LanguageRepositoryImp(
-      localStorage: get<_i6.LocalStorage>(),
-      assetLoader: get<_i3.RootBundleAssetLoader>()));
+  gh.factory<_i11.LanguageRepositoryImp>(
+      () => _i11.LanguageRepositoryImp(localStorage: get<_i6.LocalStorage>()));
   await gh.factoryAsync<_i12.ThemeRepository>(
       () => repositoryModule
           .provideThemeRepository(get<_i7.ThemeRepositoryImp>()),

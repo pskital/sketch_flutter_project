@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:sketch_flutter_project/core/extensions/translation_extension.dart';
-import 'package:sketch_flutter_project/core/validation/email_validator.dart';
+import 'package:sketch_flutter_project/core/form_validation/email_validator.dart';
 
 @injectable
 class UserLoginFormValidator with EmailValidator {
@@ -9,11 +8,11 @@ class UserLoginFormValidator with EmailValidator {
 
   String? Function(String?) passwordValidator = (String? value) {
     if (value == null) {
-      return 'incorrectPassword'.tr();
+      return 'Incorrect password';
     }
 
     if (value.length < 6) {
-      return 'incorrectPasswordLength'.tr();
+      return 'Incorrect password length';
     }
     return null;
   };

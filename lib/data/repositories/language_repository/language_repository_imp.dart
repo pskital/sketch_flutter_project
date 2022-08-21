@@ -2,17 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sketch_flutter_project/core/constants/storage_keys.dart';
 import 'package:sketch_flutter_project/core/enums/lang_type.dart';
-import 'package:sketch_flutter_project/core/utils/asset_loader.dart';
-import 'package:sketch_flutter_project/core/utils/translations.dart';
+import 'package:sketch_flutter_project/core/utils/app_translations.dart';
+import 'package:sketch_flutter_project/data/dependencies/configure_dependencies.dart';
 import 'package:sketch_flutter_project/data/repositories/language_repository/language_repository.dart';
 import 'package:sketch_flutter_project/data/storage/local_storage.dart';
 
 @injectable
 class LanguageRepositoryImp implements LanguageRepository {
-  LanguageRepositoryImp({
-    required this.localStorage,
-    required this.assetLoader,
-  }) {
+  LanguageRepositoryImp({required this.localStorage}) {
     langType = _getLangType();
   }
 
@@ -25,7 +22,6 @@ class LanguageRepositoryImp implements LanguageRepository {
 
   Locale? _systemLocale;
 
-  final RootBundleAssetLoader assetLoader;
   final LocalStorage localStorage;
 
   @override
@@ -73,7 +69,7 @@ class LanguageRepositoryImp implements LanguageRepository {
   }
 
   LangType _getLangType() {
-    final String lang = localStorage.getValue(StorageKeys.langKey);
+    final String? lang = localStorage.getValue(StorageKeys.langKey);
     return LangType.values.firstWhere(
       (LangType t) {
         final String type = t.toString().split('.').last;
@@ -91,8 +87,7 @@ class LanguageRepositoryImp implements LanguageRepository {
 
   Future<void> _loadTranslations() async {
     final String code = _getLocale().languageCode;
-    final Map<String, dynamic> data =
-        await assetLoader.load('assets/translations', Locale(code));
-    Translations.translations = Map<String, String>.from(data);
+    final AppTranslations appTranslations = serviceLocator();
+    appTranslations.setCurrentTranslations(code);
   }
 }

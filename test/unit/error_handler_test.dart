@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
 import 'package:sketch_flutter_project/core/errors/error_handler.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
 
@@ -12,8 +11,6 @@ class ErrorHandlerTest with ErrorHandler {
     return 'No access';
   }
 }
-
-class MockDioError extends Mock implements DioError {}
 
 void main() {
   final ErrorHandlerTest errorHandler = ErrorHandlerTest();
@@ -26,29 +23,31 @@ void main() {
   });
 
   test('test handle server error', () {
-    final MockDioError mockDioError = MockDioError();
-    when(() => mockDioError.response).thenReturn(
-      Response<dynamic>(
-        requestOptions: RequestOptions(path: ''),
-        data: 'Nie prawidlowe dane logowania',
-      ),
+    final DioError dioError = DioError(
+      requestOptions: RequestOptions(path: ''),
+    );
+    dioError.response = Response<String>(
+      requestOptions: RequestOptions(path: ''),
+      data: 'Nie prawidlowe dane logowania',
     );
 
     final String error =
-        errorHandler.handleError(UserLoginErrorState(mockDioError));
+        errorHandler.handleError(UserLoginErrorState(dioError));
     expect(error, 'Nie prawidlowe dane logowania');
   });
 
   test('test handle server 403 status', () {
-    final MockDioError mockDioError = MockDioError();
-    final Response<ResponseType> response = Response<ResponseType>(
+    final DioError dioError = DioError(
       requestOptions: RequestOptions(path: ''),
     );
-    response.statusCode = HttpStatus.forbidden;
-    when(() => mockDioError.response).thenReturn(response);
+
+    dioError.response = Response<ResponseType>(
+      requestOptions: RequestOptions(path: ''),
+      statusCode: HttpStatus.forbidden,
+    );
 
     final String error =
-        errorHandler.handleError(UserLoginErrorState(mockDioError));
+        errorHandler.handleError(UserLoginErrorState(dioError));
     expect(error, 'No access');
   });
 }

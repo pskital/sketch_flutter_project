@@ -10,14 +10,20 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
-  exclude: [build/**, lib/**.freezed.dart, lib/**.g.dart, lib/**.config.dart]
+  exclude: [
+      build/**,
+      lib/**.freezed.dart,
+      lib/**.g.dart,
+      lib/**.config.dart,
+      lib/**.i69n.dart,
+  ]
 
 linter:
   rules:
     # these rules are documented on and in the same order as
     # the Dart Lint rules page to make maintenance easier
     # https://github.com/dart-lang/linter/blob/master/example/all.yaml
-    always_declare_return_types : true
+    always_declare_return_types: true
     always_put_control_body_on_new_line: true
     require_trailing_commas: true
     prefer_trailing_commas: true

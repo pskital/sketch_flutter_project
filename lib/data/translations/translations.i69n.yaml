@@ -1,0 +1,22 @@
+login:
+  pageTitle: Login page
+  login: Login
+  password: Password
+  passwordRecovery: Password recovery
+settings:
+  appereanceHeader: Appereance
+  light: Light
+  dark: Dark
+  system: System
+  custom: Custom
+  language: Language
+dashboard:
+  settings: Settings
+  home: Home
+passwordRecovery:
+  pageTitle: Password recovery
+  email: Email
+  sendButton: Send
+  passwordRecoverySuccess: Password recovery success
+  passwordRecoveryError: Password recovery error
+

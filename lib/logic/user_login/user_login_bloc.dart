@@ -5,8 +5,7 @@ import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:sketch_flutter_project/core/extensions/translation_extension.dart';
-import 'package:sketch_flutter_project/core/validation/user_login_form_validator.dart';
+import 'package:sketch_flutter_project/core/form_validation/user_login_form_validator.dart';
 import 'package:sketch_flutter_project/data/models/response_login_user_model.dart';
 import 'package:sketch_flutter_project/data/repositories/token_repository/token_repository.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_event.dart';
@@ -69,7 +68,7 @@ class LoginUserBloc extends Bloc<UserLoginEvent, UserLoginState> {
     ///walidacja formularza
     if (!loginFormValidator.isFormValid()) {
       //translacje do przerobienia na i69n
-      emit(UserLoginErrorState('invalidCredentials'.tr()));
+      emit(const UserLoginErrorState('Invalid credentials'));
       return;
     }
 

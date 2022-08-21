@@ -1,9 +1,9 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/constants/paddings.dart';
-import 'package:sketch_flutter_project/core/constants/strings.dart';
-import 'package:sketch_flutter_project/core/styles/styles.dart';
-import 'package:sketch_flutter_project/core/validation/password_recovery_form_validator.dart';
+import 'package:sketch_flutter_project/core/form_validation/password_recovery_form_validator.dart';
+import 'package:sketch_flutter_project/core/styles/text_styles.dart';
+import 'package:sketch_flutter_project/core/utils/app_translations.dart';
 import 'package:sketch_flutter_project/logic/redux/app_state.dart';
 import 'package:sketch_flutter_project/logic/redux/password_recovery/password_recovery_action.dart';
 
@@ -22,8 +22,8 @@ class PasswordRecoveryFormWidget extends StatelessWidget {
         children: <Widget>[
           const SizedBox(height: 10),
           Text(
-            Strings.email,
-            style: Styles.headerTextStyle(context),
+            AppTranslations.get().passwordRecovery.email,
+            style: TextStyles.headerTextStyle(),
           ),
           const SizedBox(height: 10),
           TextFormField(
@@ -39,7 +39,9 @@ class PasswordRecoveryFormWidget extends StatelessWidget {
           const SizedBox(height: 10),
           ElevatedButton(
             onPressed: () => _recoveryPassword(context),
-            child: Text(Strings.send),
+            child: Text(
+              AppTranslations.get().passwordRecovery.sendButton,
+            ),
           )
         ],
       ),

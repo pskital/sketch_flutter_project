@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sketch_flutter_project/core/extensions/translation_extension.dart';
 import 'package:sketch_flutter_project/core/keys/keys.dart';
+import 'package:sketch_flutter_project/core/utils/app_translations.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_bloc.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_event.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
@@ -32,7 +32,9 @@ class _LoginUserButtonWidgetState extends BlocState<LoginUserButtonWidget> {
                   onPressed: bloc.state is UserLoginSuccessState
                       ? null
                       : () => bloc.add(const UserLoginEvent()),
-                  child: Text('login'.tr()),
+                  child: Text(
+                    AppTranslations.get().login.login,
+                  ),
                 ),
               ),
               Visibility(

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sketch_flutter_project/core/constants/paddings.dart';
-import 'package:sketch_flutter_project/core/constants/strings.dart';
 import 'package:sketch_flutter_project/core/route/app_route.dart';
-import 'package:sketch_flutter_project/core/styles/styles.dart';
+import 'package:sketch_flutter_project/core/styles/text_styles.dart';
 import 'package:sketch_flutter_project/data/dependencies/configure_dependencies.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_bloc.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
@@ -13,6 +12,8 @@ import 'package:sketch_flutter_project/ui/scenes/login_user_scene/login_user_inp
 import 'package:sketch_flutter_project/ui/scenes/login_user_scene/login_user_password_input_widget.dart';
 import 'package:sketch_flutter_project/ui/scenes/login_user_scene/login_user_state_listener.dart';
 import 'package:sketch_flutter_project/ui/widgets/bloc_widget.dart';
+
+import '../../../core/utils/app_translations.dart';
 
 class LoginUserPage extends StatelessWidget {
   @override
@@ -62,8 +63,8 @@ class PasswordRecoveryWidget extends StatelessWidget {
           onTap: () =>
               Navigator.of(context).pushNamed(AppRoute.passwordRecovery),
           child: Text(
-            Strings.passwordRecovery,
-            style: Styles.bodyTextStyle(context),
+            AppTranslations.get().login.passwordRecovery,
+            style: TextStyles.bodyTextStyle(),
           ),
         ),
       ],

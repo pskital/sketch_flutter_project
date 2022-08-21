@@ -1,0 +1,22 @@
+login:
+  pageTitle: Logowanie
+  login: Login
+  password: Hasło
+  passwordRecovery: Odzyskiwanie hasła
+settings:
+  appereanceHeader: Wygląd
+  light: Jasny
+  dark: Ciemny
+  system: System
+  custom: Niestandardowy
+  language: Język
+dashboard:
+  settings: Ustawienia
+  home: Dom
+passwordRecovery:
+  pageTitle: Odzyskaj hasło
+  email: Email
+  sendButton: Wyślij
+  passwordRecoverySuccess: Odzyskiwanie hasła zakośczone sukcesem
+  passwordRecoveryError: Błąd odzyskiwania hasła
+

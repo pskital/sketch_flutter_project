@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/enums/lang_type.dart';
-import 'package:sketch_flutter_project/core/extensions/translation_extension.dart';
 import 'package:sketch_flutter_project/core/keys/keys.dart';
-import 'package:sketch_flutter_project/core/styles/styles.dart';
+import 'package:sketch_flutter_project/core/styles/text_styles.dart';
+import 'package:sketch_flutter_project/core/utils/app_translations.dart';
 import 'package:sketch_flutter_project/logic/language/language_bloc.dart';
 import 'package:sketch_flutter_project/logic/language/language_event.dart';
 import 'package:sketch_flutter_project/logic/language/language_state.dart';
@@ -17,8 +17,8 @@ class SettingsLanguageWidget extends BlocWidget<LanguageBloc, LanguageState> {
       children: <Widget>[
         const SizedBox(height: 10),
         Text(
-          'appLang'.tr(),
-          style: Styles.headerTextStyle(context),
+          AppTranslations.get().settings.language,
+          style: TextStyles.headerTextStyle(),
         ),
         const SizedBox(height: 10),
         Row(
@@ -33,8 +33,8 @@ class SettingsLanguageWidget extends BlocWidget<LanguageBloc, LanguageState> {
               ),
             ),
             Text(
-              'appLangSystem'.tr(),
-              style: Styles.bodyTextStyle(context),
+              AppTranslations.get().settings.system,
+              style: TextStyles.bodyTextStyle(),
             ),
           ],
         ),
@@ -52,7 +52,7 @@ class SettingsLanguageWidget extends BlocWidget<LanguageBloc, LanguageState> {
             ),
             Text(
               'Polski',
-              style: Styles.bodyTextStyle(context),
+              style: TextStyles.bodyTextStyle(),
             ),
           ],
         ),
@@ -70,7 +70,7 @@ class SettingsLanguageWidget extends BlocWidget<LanguageBloc, LanguageState> {
             ),
             Text(
               'English',
-              style: Styles.bodyTextStyle(context),
+              style: TextStyles.bodyTextStyle(),
             ),
           ],
         ),

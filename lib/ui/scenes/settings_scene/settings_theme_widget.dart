@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/enums/theme_type.dart';
-import 'package:sketch_flutter_project/core/extensions/translation_extension.dart';
-import 'package:sketch_flutter_project/core/styles/styles.dart';
+import 'package:sketch_flutter_project/core/styles/text_styles.dart';
+import 'package:sketch_flutter_project/core/utils/app_translations.dart';
 import 'package:sketch_flutter_project/logic/theme/theme_action.dart';
 import 'package:sketch_flutter_project/logic/theme/theme_bloc.dart';
 import 'package:sketch_flutter_project/ui/widgets/bloc_widget.dart';
@@ -14,8 +14,8 @@ class SettingThemeWidget extends BlocWidget<ThemeBloc, ThemeType> {
       children: <Widget>[
         const SizedBox(height: 10),
         Text(
-          'appAppearance'.tr(),
-          style: Styles.headerTextStyle(context),
+          AppTranslations.get().settings.appereanceHeader,
+          style: TextStyles.headerTextStyle(),
         ),
         const SizedBox(height: 10),
         Row(
@@ -27,8 +27,8 @@ class SettingThemeWidget extends BlocWidget<ThemeBloc, ThemeType> {
                   _changeTheme(themeType, bloc),
             ),
             Text(
-              'appAppearanceSystem'.tr(),
-              style: Styles.bodyTextStyle(context),
+              AppTranslations.get().settings.system,
+              style: TextStyles.bodyTextStyle(),
             )
           ],
         ),
@@ -41,8 +41,8 @@ class SettingThemeWidget extends BlocWidget<ThemeBloc, ThemeType> {
                   _changeTheme(themeType, bloc),
             ),
             Text(
-              'appAppearanceLight'.tr(),
-              style: Styles.bodyTextStyle(context),
+              AppTranslations.get().settings.light,
+              style: TextStyles.bodyTextStyle(),
             )
           ],
         ),
@@ -55,8 +55,8 @@ class SettingThemeWidget extends BlocWidget<ThemeBloc, ThemeType> {
                   _changeTheme(themeType, bloc),
             ),
             Text(
-              'appAppearanceDark'.tr(),
-              style: Styles.bodyTextStyle(context),
+              AppTranslations.get().settings.dark,
+              style: TextStyles.bodyTextStyle(),
             )
           ],
         ),
@@ -69,8 +69,8 @@ class SettingThemeWidget extends BlocWidget<ThemeBloc, ThemeType> {
                   _changeTheme(themeType, bloc),
             ),
             Text(
-              'appAppearanceCustom'.tr(),
-              style: Styles.bodyTextStyle(context),
+              AppTranslations.get().settings.custom,
+              style: TextStyles.bodyTextStyle(),
             )
           ],
         ),

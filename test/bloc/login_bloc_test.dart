@@ -2,7 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:sketch_flutter_project/core/validation/user_login_form_validator.dart';
+import 'package:sketch_flutter_project/core/form_validation/user_login_form_validator.dart';
 import 'package:sketch_flutter_project/data/models/response_login_user_model.dart';
 import 'package:sketch_flutter_project/data/repositories/token_repository/token_repository.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_bloc.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sketch_flutter_project/core/validation/user_login_form_validator.dart';
+import 'package:sketch_flutter_project/core/form_validation/user_login_form_validator.dart';
 
 void main() {
   final UserLoginFormValidator formValidator = UserLoginFormValidator();

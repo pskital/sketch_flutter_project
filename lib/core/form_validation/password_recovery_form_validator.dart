@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sketch_flutter_project/core/validation/email_validator.dart';
+import 'package:sketch_flutter_project/core/form_validation/email_validator.dart';
 
 class PasswordRecoveryValidator with EmailValidator {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();

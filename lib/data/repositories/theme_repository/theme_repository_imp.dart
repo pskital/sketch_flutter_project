@@ -21,7 +21,7 @@ class ThemeRepositoryImp implements ThemeRepository {
 
   @override
   Future<void> initTheme() async {
-    _themeType = await _getThemeType();
+    _themeType = _getThemeType();
   }
 
   @override
@@ -66,8 +66,8 @@ class ThemeRepositoryImp implements ThemeRepository {
     return await localStorage.saveValue(StorageKeys.themeKey, theme);
   }
 
-  Future<ThemeType> _getThemeType() async {
-    final String theme = await localStorage.getValue(StorageKeys.themeKey);
+  ThemeType _getThemeType() {
+    final String? theme = localStorage.getValue(StorageKeys.themeKey);
     return ThemeType.values.firstWhere(
       (ThemeType t) {
         final String type = t.toString().split('.').last;

@@ -9,14 +9,19 @@ class CustomTheme extends AppTheme {
     final Brightness brightness = TargetPlatform.iOS == defaultTargetPlatform
         ? Brightness.dark
         : Brightness.light;
-    return ThemeData(
+
+    final ThemeData themeData = ThemeData(
       colorScheme: const ColorScheme.light(
         primary: Colors.orange,
         secondary: Colors.orangeAccent,
       ),
-    ).copyWith(
-      textTheme: const TextTheme().copyWith(
-        bodyText2: const TextStyle(color: Colors.orange),
+    );
+
+    return themeData.copyWith(
+      textTheme: themeData.textTheme.apply(
+        bodyColor: Colors.orange,
+        displayColor: Colors.red,
+        decorationColor: Colors.blue,
       ),
       appBarTheme: AppBarTheme(
         systemOverlayStyle: SystemUiOverlayStyle(

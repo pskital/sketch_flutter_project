@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sketch_flutter_project/core/constants/strings.dart';
 import 'package:sketch_flutter_project/core/enums/password_recovery_status.dart';
+import 'package:sketch_flutter_project/core/utils/app_translations.dart';
 import 'package:sketch_flutter_project/ui/scenes/password_recovery_scene/password_recovery_form_widget.dart';
 import 'package:sketch_flutter_project/ui/scenes/password_recovery_scene/password_recovery_page.dart';
 
@@ -14,7 +14,7 @@ class PasswordRecoveryContentWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          Strings.passwordRecovery,
+          AppTranslations.get().passwordRecovery.pageTitle,
         ),
       ),
       body: Center(
