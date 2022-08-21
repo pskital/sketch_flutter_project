@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 class Translations {
   const Translations._();
 
-  static Map<String, String> translations = {};
+  static Map<String, String> translations = <String, String>{};
 
   static String tr(String key) {
-    final translation = translations[key];
+    final String? translation = translations[key];
     if (translation == null) {
       return key;
     }

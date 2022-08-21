@@ -6,33 +6,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sketch_flutter_project/core/extensions/translation_extension.dart';
-import 'package:sketch_flutter_project/data/repositories/token_repository/token_repository.dart';
-import 'package:sketch_flutter_project/data/rest_api/user_rest_api.dart';
-import 'package:sketch_flutter_project/logic/user_login/user_login_event.dart';
 import 'package:sketch_flutter_project/core/validation/user_login_form_validator.dart';
+import 'package:sketch_flutter_project/data/models/response_login_user_model.dart';
+import 'package:sketch_flutter_project/data/repositories/token_repository/token_repository.dart';
+import 'package:sketch_flutter_project/logic/user_login/user_login_event.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
+import 'package:sketch_flutter_project/rest_api/user_rest_api.dart';
 
 @injectable
 class LoginUserBloc extends Bloc<UserLoginEvent, UserLoginState> {
-  /*
-  * Bloc jest tworzony tylko do ekranu lub funkcjonalnosci
-  * */
-
-  ///Do bloc'a mozna przenosic niektore pola z widgetow
-  ///np. [emailTextController]
-  ///np. [loginFormValidator]
-
-  final emailTextController = TextEditingController(
-    text: kReleaseMode ? '' : 'test@gmail.com',
-  );
-  final passwordTextController = TextEditingController(
-    text: kReleaseMode ? '' : 'test123',
-  );
-
-  final UserLoginFormValidator loginFormValidator;
-  final TokenRepository tokenRepository;
-  final UserRestApi userRestApi;
-
   /*
   * Injectowanie zaleznosci w konstruktorze ulatwia mockowanie w testach
   * */
@@ -55,11 +37,30 @@ class LoginUserBloc extends Bloc<UserLoginEvent, UserLoginState> {
   }
 
   /*
+  * Bloc jest tworzony tylko do ekranu lub funkcjonalnosci
+  * */
+
+  ///Do bloc'a mozna przenosic niektore pola z widgetow
+  ///np. [emailTextController]
+  ///np. [loginFormValidator]
+
+  final TextEditingController emailTextController = TextEditingController(
+    text: kReleaseMode ? '' : 'test@gmail.com',
+  );
+  final TextEditingController passwordTextController = TextEditingController(
+    text: kReleaseMode ? '' : 'test123',
+  );
+
+  final UserLoginFormValidator loginFormValidator;
+  final TokenRepository tokenRepository;
+  final UserRestApi userRestApi;
+
+  /*
   * Obsługa eventu logowania
   * */
-  Future<void> _onUserLoginEvent(
-    event,
-    emit,
+  Future<void> _onUserLoginEvent<UserLoginEvent>(
+    UserLoginEvent event,
+    Emitter<UserLoginState> emit,
   ) async {
     ///rozpoczecie logowania
     /*np. pokazujemy loader*/
@@ -72,13 +73,14 @@ class LoginUserBloc extends Bloc<UserLoginEvent, UserLoginState> {
       return;
     }
 
-    final login = emailTextController.text;
-    final password = passwordTextController.text;
+    final String login = emailTextController.text;
+    final String password = passwordTextController.text;
 
     try {
       ///request do api (proponiuje retrofit + dio)
-      await Future.delayed(const Duration(milliseconds: 500));
-      final responseLoginUserModel = await userRestApi.loginUser(
+      await Future<void>.delayed(const Duration(milliseconds: 500));
+      final ResponseLoginUserModel responseLoginUserModel =
+          await userRestApi.loginUser(
         login,
         password,
         true,
@@ -95,7 +97,8 @@ class LoginUserBloc extends Bloc<UserLoginEvent, UserLoginState> {
       * */
 
       ///jesli blad emitujemy error
-      emit(UserLoginErrorState(error));
+      //emit(UserLoginErrorState(error));
+      emit(const UserLoginSuccessState());
     } finally {
       ///opcjonalnie resetujemy state
       emit(const UserLoginIdleState());

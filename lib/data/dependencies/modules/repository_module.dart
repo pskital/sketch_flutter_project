@@ -19,7 +19,7 @@ abstract class RepositoryModule {
   Future<LanguageRepository> provideLanguageRepository(
     LanguageRepositoryImp languageRepository,
   ) async {
-    var systemLocales = WidgetsBinding.instance.window.locales;
+    final List<Locale> systemLocales = WidgetsBinding.instance.window.locales;
     await languageRepository.setSystemLocale(systemLocales);
     return languageRepository;
   }

@@ -6,21 +6,26 @@ import 'package:sketch_flutter_project/core/themes/app_theme.dart';
 class CustomTheme extends AppTheme {
   @override
   ThemeData createTheme() {
-    var brightness = TargetPlatform.iOS == defaultTargetPlatform
+    final Brightness brightness = TargetPlatform.iOS == defaultTargetPlatform
         ? Brightness.dark
         : Brightness.light;
     return ThemeData(
-        colorScheme: const ColorScheme.light(
-      primary: Colors.orange,
-      secondary: Colors.orangeAccent,
-    )).copyWith(
+      colorScheme: const ColorScheme.light(
+        primary: Colors.orange,
+        secondary: Colors.orangeAccent,
+      ),
+    ).copyWith(
+      textTheme: const TextTheme().copyWith(
+        bodyText2: const TextStyle(color: Colors.orange),
+      ),
       appBarTheme: AppBarTheme(
-          systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarBrightness: brightness,
-        statusBarIconBrightness: brightness,
-      )),
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarBrightness: brightness,
+          statusBarIconBrightness: brightness,
+        ),
+      ),
       radioTheme: RadioThemeData(
-        fillColor: MaterialStateColor.resolveWith((states) {
+        fillColor: MaterialStateColor.resolveWith((Set<MaterialState> states) {
           const Set<MaterialState> interactiveStates = <MaterialState>{
             MaterialState.selected,
           };

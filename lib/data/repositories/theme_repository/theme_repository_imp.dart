@@ -10,11 +10,11 @@ import 'package:sketch_flutter_project/data/storage/local_storage.dart';
 
 @injectable
 class ThemeRepositoryImp implements ThemeRepository {
+  ThemeRepositoryImp({required this.localStorage});
+
   final LocalStorage localStorage;
 
   late ThemeType _themeType;
-
-  ThemeRepositoryImp({required this.localStorage});
 
   @override
   ThemeType get themeType => _themeType;
@@ -26,14 +26,14 @@ class ThemeRepositoryImp implements ThemeRepository {
 
   @override
   Future<void> setTheme(ThemeType theme) async {
-    var value = theme.value;
+    final String value = theme.value;
     await _saveTheme(value);
     _themeType = theme;
   }
 
   @override
   ThemeMode getThemeMode() {
-    var type = _themeType;
+    final ThemeType type = _themeType;
     switch (type) {
       case ThemeType.system:
         return ThemeMode.system;
@@ -49,7 +49,7 @@ class ThemeRepositoryImp implements ThemeRepository {
 
   @override
   ThemeData getThemeData() {
-    var type = _themeType;
+    final ThemeType type = _themeType;
     switch (type) {
       case ThemeType.dark:
         return DarkTheme().get();
@@ -67,10 +67,13 @@ class ThemeRepositoryImp implements ThemeRepository {
   }
 
   Future<ThemeType> _getThemeType() async {
-    var theme = await localStorage.getValue(StorageKeys.themeKey);
-    return ThemeType.values.firstWhere((t) {
-      var type = t.toString().split('.').last;
-      return type == theme;
-    }, orElse: () => ThemeType.system);
+    final String theme = await localStorage.getValue(StorageKeys.themeKey);
+    return ThemeType.values.firstWhere(
+      (ThemeType t) {
+        final String type = t.toString().split('.').last;
+        return type == theme;
+      },
+      orElse: () => ThemeType.system,
+    );
   }
 }

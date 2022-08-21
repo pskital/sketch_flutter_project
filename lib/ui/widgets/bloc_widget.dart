@@ -14,5 +14,5 @@ abstract class BlocWidget<T extends StateStreamable<S>, S>
 
   B getBloc<B>(BuildContext context) => context.read<B>();
 
-  buildWidget(BuildContext context, T bloc);
+  Widget buildWidget(BuildContext context, T bloc);
 }

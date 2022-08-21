@@ -3,8 +3,6 @@ import 'package:sketch_flutter_project/logic/redux/password_recovery/password_re
 
 @immutable
 class AppSate {
-  final PasswordRecoveryState passwordRecoveryState;
-
   //final RegisterUserState registerState;
   //final LoginUserState loginState;
   //itd...
@@ -12,6 +10,8 @@ class AppSate {
   const AppSate({
     required this.passwordRecoveryState,
   });
+
+  final PasswordRecoveryState passwordRecoveryState;
 
   AppSate copy({
     PasswordRecoveryState? passwordRecoveryState,

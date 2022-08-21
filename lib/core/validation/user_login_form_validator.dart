@@ -7,7 +7,7 @@ import 'package:sketch_flutter_project/core/validation/email_validator.dart';
 class UserLoginFormValidator with EmailValidator {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  String? Function(String?) passwordValidator = (value) {
+  String? Function(String?) passwordValidator = (String? value) {
     if (value == null) {
       return 'incorrectPassword'.tr();
     }

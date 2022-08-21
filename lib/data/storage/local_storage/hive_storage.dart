@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 import 'package:sketch_flutter_project/data/storage/local_storage.dart';
 
 class HiveStorage implements LocalStorage {
-  late Box _box;
+  late Box<dynamic> _box;
 
   @override
   T? getValue<T>(String key) {

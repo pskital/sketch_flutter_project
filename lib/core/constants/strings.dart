@@ -3,21 +3,21 @@ import 'package:sketch_flutter_project/core/extensions/translation_extension.dar
 class Strings {
   Strings._();
 
-  static get settings => 'settings'.tr();
+  static String get settings => 'settings'.tr();
 
-  static get home => 'Home'.tr();
+  static String get home => 'Home'.tr();
 
-  static get homeNested => 'homeNested'.tr();
+  static String get homeNested => 'homeNested'.tr();
 
-  static get passwordRecovery => 'passwordRecovery'.tr();
+  static String get passwordRecovery => 'passwordRecovery'.tr();
 
-  static get email => 'email'.tr();
+  static String get email => 'email'.tr();
 
-  static get send => 'send'.tr();
+  static String get send => 'send'.tr();
 
-  static get passwordRecoverySuccessMessage =>
+  static String get passwordRecoverySuccessMessage =>
       'passwordRecoverySuccessMessage'.tr();
 
-  static get recoveryPasswordErrorMessage =>
+  static String get recoveryPasswordErrorMessage =>
       'recoveryPasswordErrorMessage'.tr();
 }

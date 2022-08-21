@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:sketch_flutter_project/data/providers/dio_provider.dart';
-import 'package:sketch_flutter_project/data/rest_api/user_rest_api.dart';
+import 'package:sketch_flutter_project/rest_api/user_rest_api.dart';
 
 @module
 abstract class ApiModule {

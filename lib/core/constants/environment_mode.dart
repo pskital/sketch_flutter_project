@@ -1,6 +1,6 @@
 class EnvironmentMode {
   EnvironmentMode._();
 
-  static const dev = 'dev';
-  static const prod = 'prod';
+  static const String dev = 'dev';
+  static const String prod = 'prod';
 }

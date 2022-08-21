@@ -9,9 +9,16 @@ import 'package:sketch_flutter_project/data/storage/local_storage.dart';
 
 @injectable
 class LanguageRepositoryImp implements LanguageRepository {
-  final _defaultLocale = const Locale('en', 'EN');
+  LanguageRepositoryImp({
+    required this.localStorage,
+    required this.assetLoader,
+  }) {
+    langType = _getLangType();
+  }
 
-  final _supportedLocales = [
+  final Locale _defaultLocale = const Locale('en', 'EN');
+
+  final List<Locale> _supportedLocales = <Locale>[
     const Locale('pl', 'PL'),
     const Locale('en', 'EN'),
   ];
@@ -24,16 +31,9 @@ class LanguageRepositoryImp implements LanguageRepository {
   @override
   LangType langType = LangType.system;
 
-  LanguageRepositoryImp({
-    required this.localStorage,
-    required this.assetLoader,
-  }) {
-    langType = _getLangType();
-  }
-
   @override
-  setLanguage(LangType langType) async {
-    var value = langType.value;
+  Future<void> setLanguage(LangType langType) async {
+    final String value = langType.value;
     this.langType = langType;
 
     await _saveLanguage(value);
@@ -41,7 +41,7 @@ class LanguageRepositoryImp implements LanguageRepository {
   }
 
   @override
-  setSystemLocale(List<Locale>? locales) async {
+  Future<void> setSystemLocale(List<Locale>? locales) async {
     if (locales != null && locales.isNotEmpty) {
       _systemLocale = locales.first;
       await _loadTranslations();
@@ -56,7 +56,7 @@ class LanguageRepositoryImp implements LanguageRepository {
         locale = _systemLocale;
         break;
       default:
-        var typeValue = langType.value;
+        final String typeValue = langType.value;
         locale = Locale(typeValue, typeValue.toUpperCase());
         break;
     }
@@ -73,22 +73,26 @@ class LanguageRepositoryImp implements LanguageRepository {
   }
 
   LangType _getLangType() {
-    var lang = localStorage.getValue(StorageKeys.langKey);
-    return LangType.values.firstWhere((t) {
-      var type = t.toString().split('.').last;
-      return type == lang;
-    }, orElse: () => LangType.system);
+    final String lang = localStorage.getValue(StorageKeys.langKey);
+    return LangType.values.firstWhere(
+      (LangType t) {
+        final String type = t.toString().split('.').last;
+        return type == lang;
+      },
+      orElse: () => LangType.system,
+    );
   }
 
   bool _isLocaleSupported(Locale locale) {
     return _supportedLocales
-        .map((e) => e.languageCode)
+        .map((Locale e) => e.languageCode)
         .contains(locale.languageCode);
   }
 
-  _loadTranslations() async {
-    var code = _getLocale().languageCode;
-    var data = await assetLoader.load('assets/translations', Locale(code));
+  Future<void> _loadTranslations() async {
+    final String code = _getLocale().languageCode;
+    final Map<String, dynamic> data =
+        await assetLoader.load('assets/translations', Locale(code));
     Translations.translations = Map<String, String>.from(data);
   }
 }

@@ -4,7 +4,7 @@ import 'package:sketch_flutter_project/core/enums/lang_type.dart';
 abstract class LanguageRepository {
   late LangType langType;
 
-  setLanguage(LangType langType);
+  Future<void> setLanguage(LangType langType);
 
-  setSystemLocale(List<Locale>? locales);
+  Future<void> setSystemLocale(List<Locale>? locales);
 }

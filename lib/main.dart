@@ -11,8 +11,14 @@ void main() async {
 
   await configureDependencies(EnvironmentMode.prod);
 
-  runApp(MultiBlocProvider(providers: [
-    BlocProvider(create: (_) => serviceLocator<LanguageBloc>()),
-    BlocProvider(create: (_) => serviceLocator<ThemeBloc>()),
-  ], child: const FlutterApp()));
+  runApp(
+    MultiBlocProvider(
+      providers: <BlocProvider<dynamic>>[
+        BlocProvider<LanguageBloc>(
+            create: (_) => serviceLocator<LanguageBloc>(),),
+        BlocProvider<ThemeBloc>(create: (_) => serviceLocator<ThemeBloc>()),
+      ],
+      child: const FlutterApp(),
+    ),
+  );
 }

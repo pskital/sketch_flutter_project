@@ -9,13 +9,12 @@ import 'package:sketch_flutter_project/logic/language/language_state.dart';
 import 'package:sketch_flutter_project/ui/widgets/bloc_widget.dart';
 
 class SettingsLanguageWidget extends BlocWidget<LanguageBloc, LanguageState> {
-
   @override
   Widget buildWidget(BuildContext context, LanguageBloc bloc) {
-    var langType = bloc.state.langType;
+    final LangType langType = bloc.state.langType;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children: <Widget>[
         const SizedBox(height: 10),
         Text(
           'appLang'.tr(),
@@ -23,13 +22,16 @@ class SettingsLanguageWidget extends BlocWidget<LanguageBloc, LanguageState> {
         ),
         const SizedBox(height: 10),
         Row(
-          children: [
+          children: <Widget>[
             Radio<LangType>(
-                value: LangType.system,
-                groupValue: langType,
-                onChanged: (langType) => bloc.add(SetLanguageEvent(
-                      langType: langType,
-                    ))),
+              value: LangType.system,
+              groupValue: langType,
+              onChanged: (LangType? langType) => bloc.add(
+                SetLanguageEvent(
+                  langType: langType,
+                ),
+              ),
+            ),
             Text(
               'appLangSystem'.tr(),
               style: Styles.bodyTextStyle(context),
@@ -37,14 +39,17 @@ class SettingsLanguageWidget extends BlocWidget<LanguageBloc, LanguageState> {
           ],
         ),
         Row(
-          children: [
+          children: <Widget>[
             Radio<LangType>(
-                key: Keys.langTypePlRadioKey,
-                value: LangType.pl,
-                groupValue: langType,
-                onChanged: (langType) => bloc.add(SetLanguageEvent(
-                      langType: langType,
-                    ))),
+              key: Keys.langTypePlRadioKey,
+              value: LangType.pl,
+              groupValue: langType,
+              onChanged: (LangType? langType) => bloc.add(
+                SetLanguageEvent(
+                  langType: langType,
+                ),
+              ),
+            ),
             Text(
               'Polski',
               style: Styles.bodyTextStyle(context),
@@ -52,14 +57,17 @@ class SettingsLanguageWidget extends BlocWidget<LanguageBloc, LanguageState> {
           ],
         ),
         Row(
-          children: [
+          children: <Widget>[
             Radio<LangType>(
-                key: Keys.langTypeENRadioKey,
-                value: LangType.en,
-                groupValue: langType,
-                onChanged: (langType) => bloc.add(SetLanguageEvent(
-                      langType: langType,
-                    ))),
+              key: Keys.langTypeENRadioKey,
+              value: LangType.en,
+              groupValue: langType,
+              onChanged: (LangType? langType) => bloc.add(
+                SetLanguageEvent(
+                  langType: langType,
+                ),
+              ),
+            ),
             Text(
               'English',
               style: Styles.bodyTextStyle(context),

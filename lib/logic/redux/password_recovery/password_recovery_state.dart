@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/enums/password_recovery_status.dart';
-import 'package:sketch_flutter_project/core/exceptions/error_handler.dart';
-import 'package:sketch_flutter_project/core/exceptions/error_state.dart';
+import 'package:sketch_flutter_project/core/errors/error_handler.dart';
+import 'package:sketch_flutter_project/core/errors/error_state.dart';
 
 @immutable
 class PasswordRecoveryState with ErrorHandler implements ErrorState {
-  final PasswordRecoveryStatus status;
-  final Object? error;
-
   factory PasswordRecoveryState() {
     return const PasswordRecoveryState.create(
       status: PasswordRecoveryStatus.idle,
@@ -18,6 +15,9 @@ class PasswordRecoveryState with ErrorHandler implements ErrorState {
     required this.status,
     this.error,
   });
+
+  final PasswordRecoveryStatus status;
+  final Object? error;
 
   PasswordRecoveryState copy({
     required PasswordRecoveryStatus status,

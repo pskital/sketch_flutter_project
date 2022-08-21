@@ -7,24 +7,29 @@ import 'package:sketch_flutter_project/logic/language/language_state.dart';
 
 @injectable
 class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
-  final LanguageRepository languageRepository;
-
   LanguageBloc({
     required this.languageRepository,
   }) : super(SetLanguageState(languageRepository.langType)) {
-    on<SetSystemLocaleEvent>((event, emit) => _setSystemLocale(event, emit));
-    on<SetLanguageEvent>((event, emit) => _setLanguage(event, emit));
+    on<SetSystemLocaleEvent>(
+        (SetSystemLocaleEvent event, Emitter<LanguageState> emit) =>
+            _setSystemLocale(event, emit),);
+    on<SetLanguageEvent>(
+        (SetLanguageEvent event, Emitter<LanguageState> emit) =>
+            _setLanguage(event, emit),);
   }
 
-  void _setLanguage(SetLanguageEvent event, Emitter<LanguageState> emit) async {
-    var langType = event.langType;
+  final LanguageRepository languageRepository;
+
+  Future<void> _setLanguage(
+      SetLanguageEvent event, Emitter<LanguageState> emit,) async {
+    final LangType? langType = event.langType;
     if (langType != null) {
       await languageRepository.setLanguage(langType);
       emit(SetLanguageState(langType));
     }
   }
 
-  void _setSystemLocale(
+  Future<void> _setSystemLocale(
     SetSystemLocaleEvent event,
     Emitter<LanguageState> emit,
   ) async {

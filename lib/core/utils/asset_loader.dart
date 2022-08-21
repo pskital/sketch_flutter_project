@@ -5,15 +5,16 @@ import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 
 Locale localeFromString(String localeString) {
-  final localeList = localeString.split('_');
+  final List<String> localeList = localeString.split('_');
   switch (localeList.length) {
     case 2:
       return Locale(localeList.first, localeList.last);
     case 3:
       return Locale.fromSubtags(
-          languageCode: localeList.first,
-          scriptCode: localeList[1],
-          countryCode: localeList.last);
+        languageCode: localeList.first,
+        scriptCode: localeList[1],
+        countryCode: localeList.last,
+      );
     default:
       return Locale(localeList.first);
   }
@@ -40,7 +41,7 @@ class RootBundleAssetLoader extends AssetLoader {
 
   @override
   Future<Map<String, dynamic>> load(String path, Locale locale) async {
-    var localePath = getLocalePath(path, locale);
+    final String localePath = getLocalePath(path, locale);
     return json.decode(await rootBundle.loadString(localePath));
   }
 }

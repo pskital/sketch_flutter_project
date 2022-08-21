@@ -12,7 +12,7 @@ class SharedPreferencesStorage implements LocalStorage {
   }
 
   @override
-  Future<void> saveValue<T>(String key, value) async {
+  Future<void> saveValue<T>(String key, T value) async {
     if (value is String) {
       await _sharedPreferences.setString(key, value);
     } else {

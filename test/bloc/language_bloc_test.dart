@@ -29,9 +29,9 @@ void main() {
         when(() => mockLanguageRepository.langType).thenReturn(LangType.system);
         //Pass the same value to mocked method from when(...) that will be passed during test:
         when(() => mockAssetsLoader.load(
-                'assets/translations', const Locale('en')))
-            .thenAnswer(
-                (_) async => Future<Map<String, String>>.value({'a': 'b'}));
+                'assets/translations', const Locale('en'),),)
+            .thenAnswer((_) async =>
+                Future<Map<String, String>>.value(<String, String>{'a': 'b'}),);
         when(() => mockLanguageRepository.setLanguage(LangType.system))
             .thenAnswer((_) async => Future<void>.value());
       },
@@ -39,10 +39,10 @@ void main() {
       build: () => LanguageBloc(
             languageRepository: mockLanguageRepository,
           ),
-      act: (bloc) {
+      act: (LanguageBloc bloc) {
         bloc.add(const SetLanguageEvent(langType: LangType.pl));
       },
-      expect: () => [
+      expect: () => <LanguageState>[
             const SetLanguageState(LangType.pl),
-          ]);
+          ],);
 }

@@ -15,16 +15,16 @@ class LoginUserButtonWidget extends StatefulWidget {
 class _LoginUserButtonWidgetState extends BlocState<LoginUserButtonWidget> {
   @override
   Widget build(BuildContext context) {
-    var bloc = getBloc<LoginUserBloc>();
+    final LoginUserBloc bloc = getBloc<LoginUserBloc>();
     return BlocListener<LoginUserBloc, UserLoginState>(
-      listener: (context, state) => setState(() {}),
+      listener: (BuildContext context, UserLoginState state) => setState(() {}),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
+        children: <Widget>[
           const SizedBox(height: 20),
           Stack(
             fit: StackFit.passthrough,
-            children: [
+            children: <Widget>[
               Visibility(
                 visible: bloc.state is! UserLoginInProgressState,
                 child: ElevatedButton(

@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:sketch_flutter_project/core/keys/keys.dart';
 import 'package:sketch_flutter_project/main.dart' as app;
-import 'package:sketch_flutter_project/ui/dashboard_scene/dashboard_page.dart';
+import 'package:sketch_flutter_project/ui/scenes/dashboard_scene/dashboard_page.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();

@@ -22,7 +22,7 @@ class FlutterApp extends StatefulWidget {
 
 class _FlutterAppState extends BlocState<FlutterApp>
     with WidgetsBindingObserver {
-  final Store<AppSate> _store = Store(
+  final Store<AppSate> _store = Store<AppSate>(
     initialState: AppSate(
       passwordRecoveryState: PasswordRecoveryState(),
     ),
@@ -30,24 +30,26 @@ class _FlutterAppState extends BlocState<FlutterApp>
 
   @override
   Widget build(BuildContext context) {
-    var languageBloc = getBloc<LanguageBloc>();
-    var themeBloc = getBloc<ThemeBloc>();
+    final LanguageBloc languageBloc = getBloc<LanguageBloc>();
+    final ThemeBloc themeBloc = getBloc<ThemeBloc>();
     return MultiBlocBuilder(
-        builder: (context, states) => StoreProvider(
-              store: _store,
-              child: MaterialApp(
-                builder: (context, widget) => MediaQuery(
-                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
-                  child: widget!,
-                ),
-                themeMode: themeBloc.getThemeMode(),
-                theme: themeBloc.getThemeData(),
-                darkTheme: DarkTheme().get(),
-                routes: AppRoute().appRoutes,
-                initialRoute: AppRoute.loginPage,
-              ),
-            ),
-        blocs: [themeBloc, languageBloc]);
+      builder: (BuildContext context, BlocStates states) =>
+          StoreProvider<AppSate>(
+        store: _store,
+        child: MaterialApp(
+          builder: (BuildContext context, Widget? widget) => MediaQuery(
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+            child: widget!,
+          ),
+          themeMode: themeBloc.getThemeMode(),
+          theme: themeBloc.getThemeData(),
+          darkTheme: DarkTheme().get(),
+          routes: AppRoute().appRoutes,
+          initialRoute: AppRoute.loginPage,
+        ),
+      ),
+      blocs: <Bloc<dynamic, dynamic>>[themeBloc, languageBloc],
+    );
   }
 
   @override

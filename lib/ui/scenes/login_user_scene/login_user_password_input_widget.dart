@@ -5,28 +5,29 @@ import 'package:sketch_flutter_project/logic/user_login/user_login_bloc.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
 import 'package:sketch_flutter_project/ui/widgets/bloc_widget.dart';
 
-class LoginInputWidget extends BlocWidget<LoginUserBloc, UserLoginState?> {
-
+class LoginPasswordInputWidget
+    extends BlocWidget<LoginUserBloc, UserLoginState> {
   @override
-  buildWidget(BuildContext context, LoginUserBloc bloc) {
+  Column buildWidget(BuildContext context, LoginUserBloc bloc) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children: <Widget>[
         const SizedBox(height: 10),
         Text(
-          'login'.tr(),
+          'password'.tr(),
           style: Styles.headerTextStyle(context),
         ),
         const SizedBox(height: 10),
         TextFormField(
-          textInputAction: TextInputAction.next,
+          textInputAction: TextInputAction.done,
           minLines: 1,
           maxLines: 1,
           autocorrect: false,
-          keyboardType: TextInputType.emailAddress,
-          validator: bloc.loginFormValidator.emailValidator,
+          obscureText: true,
+          keyboardType: TextInputType.visiblePassword,
+          validator: bloc.loginFormValidator.passwordValidator,
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          controller: bloc.emailTextController,
+          controller: bloc.passwordTextController,
         ),
       ],
     );

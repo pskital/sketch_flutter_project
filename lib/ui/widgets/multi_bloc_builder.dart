@@ -1,55 +1,60 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
 class MultiBlocBuilder extends StatefulWidget {
-  final Widget Function(BuildContext, BlocStates) _builder;
-  final List<Bloc> _blocs;
-
   const MultiBlocBuilder({
     required Widget Function(BuildContext, BlocStates) builder,
-    required List<Bloc> blocs,
+    required List<Bloc<dynamic, dynamic>> blocs,
   })  : _builder = builder,
         _blocs = blocs;
+  final Widget Function(BuildContext, BlocStates) _builder;
+  final List<Bloc<dynamic, dynamic>> _blocs;
 
   @override
   State<StatefulWidget> createState() => _MultiBlocState();
 }
 
 class _MultiBlocState extends State<MultiBlocBuilder> {
-  final _stateSubscriptions = [];
+  final List<StreamSubscription<dynamic>> _stateSubscriptions =
+      <StreamSubscription<dynamic>>[];
 
   @override
   void initState() {
     super.initState();
 
-    for (var bloc in widget._blocs) {
-      final subscription = bloc.stream.listen((state) => setState(() {}));
+    for (final Bloc<dynamic, dynamic> bloc in widget._blocs) {
+      final StreamSubscription<dynamic> subscription =
+          bloc.stream.listen((dynamic state) => setState(() {}));
       _stateSubscriptions.add(subscription);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final states = widget._blocs.map((bloc) => bloc.state).toList();
+    final List<dynamic> states =
+        widget._blocs.map((Bloc<dynamic, dynamic> bloc) => bloc.state).toList();
     return widget._builder(context, BlocStates._private(states));
   }
 
   @override
   void dispose() {
     super.dispose();
-    for (var subscription in _stateSubscriptions) {
+    for (final StreamSubscription<dynamic> subscription
+        in _stateSubscriptions) {
       subscription.cancel();
     }
   }
 }
 
 class BlocStates {
-  final List _stateContainer = [];
-
-  BlocStates._private(List states) {
+  BlocStates._private(List<dynamic> states) {
     _stateContainer.addAll(states);
   }
 
-  T get<T>() =>
-      _stateContainer.firstWhere((entry) => (entry is T), orElse: () => null);
+  final List<dynamic> _stateContainer = <dynamic>[];
+
+  T get<T>() => _stateContainer.firstWhere((dynamic entry) => entry is T,
+      orElse: () => null,);
 }

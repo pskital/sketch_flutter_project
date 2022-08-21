@@ -1,5 +1,5 @@
 class FontFamily {
   FontFamily._();
 
-  static const audiTypeNormal = 'AudiType-Normal';
+  static const String audiTypeNormal = 'AudiType-Normal';
 }

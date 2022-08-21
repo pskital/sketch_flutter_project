@@ -11,7 +11,7 @@ class SettingThemeWidget extends BlocWidget<ThemeBloc, ThemeType> {
   Widget buildWidget(BuildContext context, ThemeBloc bloc) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children: <Widget>[
         const SizedBox(height: 10),
         Text(
           'appAppearance'.tr(),
@@ -19,11 +19,12 @@ class SettingThemeWidget extends BlocWidget<ThemeBloc, ThemeType> {
         ),
         const SizedBox(height: 10),
         Row(
-          children: [
+          children: <Widget>[
             Radio<ThemeType>(
               value: ThemeType.system,
               groupValue: bloc.state,
-              onChanged: (themeType) => _changeTheme(themeType, bloc),
+              onChanged: (ThemeType? themeType) =>
+                  _changeTheme(themeType, bloc),
             ),
             Text(
               'appAppearanceSystem'.tr(),
@@ -32,11 +33,12 @@ class SettingThemeWidget extends BlocWidget<ThemeBloc, ThemeType> {
           ],
         ),
         Row(
-          children: [
+          children: <Widget>[
             Radio<ThemeType>(
               value: ThemeType.light,
               groupValue: bloc.state,
-              onChanged: (themeType) => _changeTheme(themeType, bloc),
+              onChanged: (ThemeType? themeType) =>
+                  _changeTheme(themeType, bloc),
             ),
             Text(
               'appAppearanceLight'.tr(),
@@ -45,11 +47,12 @@ class SettingThemeWidget extends BlocWidget<ThemeBloc, ThemeType> {
           ],
         ),
         Row(
-          children: [
+          children: <Widget>[
             Radio<ThemeType>(
               value: ThemeType.dark,
               groupValue: bloc.state,
-              onChanged: (themeType) => _changeTheme(themeType, bloc),
+              onChanged: (ThemeType? themeType) =>
+                  _changeTheme(themeType, bloc),
             ),
             Text(
               'appAppearanceDark'.tr(),
@@ -58,11 +61,12 @@ class SettingThemeWidget extends BlocWidget<ThemeBloc, ThemeType> {
           ],
         ),
         Row(
-          children: [
+          children: <Widget>[
             Radio<ThemeType>(
               value: ThemeType.custom,
               groupValue: bloc.state,
-              onChanged: (themeType) => _changeTheme(themeType, bloc),
+              onChanged: (ThemeType? themeType) =>
+                  _changeTheme(themeType, bloc),
             ),
             Text(
               'appAppearanceCustom'.tr(),

@@ -4,21 +4,22 @@ import 'package:sketch_flutter_project/core/constants/paddings.dart';
 import 'package:sketch_flutter_project/core/constants/strings.dart';
 import 'package:sketch_flutter_project/core/styles/styles.dart';
 import 'package:sketch_flutter_project/core/validation/password_recovery_form_validator.dart';
-import 'package:sketch_flutter_project/logic/redux/password_recovery/password_recovery_action.dart';
 import 'package:sketch_flutter_project/logic/redux/app_state.dart';
+import 'package:sketch_flutter_project/logic/redux/password_recovery/password_recovery_action.dart';
 
 class PasswordRecoveryFormWidget extends StatelessWidget {
-  final _passwordRecoveryValidator = PasswordRecoveryValidator();
-  final _textEditingController = TextEditingController();
+  final PasswordRecoveryValidator _passwordRecoveryValidator =
+      PasswordRecoveryValidator();
+  final TextEditingController _textEditingController = TextEditingController();
 
   @override
-  build(BuildContext context) {
+  Form build(BuildContext context) {
     return Form(
       key: _passwordRecoveryValidator.formKey,
       child: ListView(
         padding: const EdgeInsets.all(Paddings.pagePadding),
         shrinkWrap: true,
-        children: [
+        children: <Widget>[
           const SizedBox(height: 10),
           Text(
             Strings.email,

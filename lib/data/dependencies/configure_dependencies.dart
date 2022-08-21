@@ -3,10 +3,10 @@ import 'package:injectable/injectable.dart';
 import 'package:sketch_flutter_project/core/constants/environment_mode.dart';
 import 'package:sketch_flutter_project/data/dependencies/configure_dependencies.config.dart';
 
-final serviceLocator = GetIt.instance;
+final GetIt serviceLocator = GetIt.instance;
 
-const devEnv = Environment(EnvironmentMode.dev);
-const prodEnv = Environment(EnvironmentMode.prod);
+const Environment devEnv = Environment(EnvironmentMode.dev);
+const Environment prodEnv = Environment(EnvironmentMode.prod);
 
 @InjectableInit(
   initializerName: r'$initGetIt',

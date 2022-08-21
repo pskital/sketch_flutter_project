@@ -5,9 +5,9 @@ import 'package:sketch_flutter_project/data/storage/local_storage.dart';
 
 @Injectable(as: TokenRepository)
 class TokenRepositoryImp implements TokenRepository {
-  final LocalStorage localStorage;
-
   TokenRepositoryImp({required this.localStorage});
+
+  final LocalStorage localStorage;
 
   @override
   Future<void> saveToken(String token) async {

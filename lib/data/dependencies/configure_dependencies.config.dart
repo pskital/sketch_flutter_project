@@ -30,8 +30,6 @@ import 'package:sketch_flutter_project/data/repositories/token_repository/token_
     as _i8;
 import 'package:sketch_flutter_project/data/repositories/token_repository/token_repository_imp.dart'
     as _i9;
-import 'package:sketch_flutter_project/data/rest_api/user_rest_api.dart'
-    as _i13;
 import 'package:sketch_flutter_project/data/storage/local_storage.dart' as _i6;
 import 'package:sketch_flutter_project/data/storage/local_storage/shared_preferences_storage.dart'
     as _i4;
@@ -40,6 +38,7 @@ import 'package:sketch_flutter_project/logic/language/language_bloc.dart'
 import 'package:sketch_flutter_project/logic/theme/theme_bloc.dart' as _i16;
 import 'package:sketch_flutter_project/logic/user_login/user_login_bloc.dart'
     as _i15;
+import 'package:sketch_flutter_project/rest_api/user_rest_api.dart' as _i13;
 
 const String _dev = 'dev';
 const String _prod = 'prod';
