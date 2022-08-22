@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sketch_flutter_project/core/errors/error_handler.dart';
+import 'package:sketch_flutter_project/core/utils/app_translations.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
 
 class ErrorHandlerTest with ErrorHandler {}
@@ -14,16 +15,18 @@ void main() {
     final ArgumentError argumentError = ArgumentError();
     final String error =
         errorHandler.handleError(UserLoginErrorState(argumentError));
-    expect(error, 'loginError');
+    expect(error, translations.errors.internalError);
   });
 
   test('test handle server error', () {
     final DioError dioError = DioError(
+      type: DioErrorType.response,
       requestOptions: RequestOptions(path: ''),
-    );
-    dioError.response = Response<String>(
-      requestOptions: RequestOptions(path: ''),
-      data: 'Nie prawidlowe dane logowania',
+      response: Response<String>(
+        statusCode: HttpStatus.badRequest,
+        requestOptions: RequestOptions(path: ''),
+        data: 'Nie prawidlowe dane logowania',
+      ),
     );
 
     final String error =
@@ -33,16 +36,15 @@ void main() {
 
   test('test handle server 403 status', () {
     final DioError dioError = DioError(
+      type: DioErrorType.response,
       requestOptions: RequestOptions(path: ''),
+      response: Response<ResponseType>(
+        requestOptions: RequestOptions(path: ''),
+        statusCode: HttpStatus.forbidden,
+      ),
     );
-
-    dioError.response = Response<ResponseType>(
-      requestOptions: RequestOptions(path: ''),
-      statusCode: HttpStatus.forbidden,
-    );
-
     final String error =
         errorHandler.handleError(UserLoginErrorState(dioError));
-    expect(error, 'No access');
+    expect(error, translations.errors.forbidden);
   });
 }

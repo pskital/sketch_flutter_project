@@ -4,7 +4,7 @@ import 'package:sketch_flutter_project/data/translations/translations_pl.i69n.da
 
 @singleton
 class AppTranslations {
-  static late Translations _translations;
+  static Translations _translations = const Translations();
 
   final Map<String, Translations Function()> _translationsMap =
       <String, Translations Function()>{
