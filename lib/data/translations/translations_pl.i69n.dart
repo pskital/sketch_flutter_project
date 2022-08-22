@@ -41,6 +41,7 @@ class Translations_pl extends Translations {
   DashboardTranslations_pl get dashboard => DashboardTranslations_pl(this);
   PasswordRecoveryTranslations_pl get passwordRecovery =>
       PasswordRecoveryTranslations_pl(this);
+  ErrorsTranslations_pl get errors => ErrorsTranslations_pl(this);
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -56,6 +57,8 @@ class Translations_pl extends Translations {
         return dashboard;
       case 'passwordRecovery':
         return passwordRecovery;
+      case 'errors':
+        return errors;
       default:
         return super[key];
     }
@@ -172,6 +175,40 @@ class PasswordRecoveryTranslations_pl extends PasswordRecoveryTranslations {
         return passwordRecoverySuccess;
       case 'passwordRecoveryError':
         return passwordRecoveryError;
+      default:
+        return super[key];
+    }
+  }
+}
+
+class ErrorsTranslations_pl extends ErrorsTranslations {
+  final Translations_pl _parent;
+  const ErrorsTranslations_pl(this._parent) : super(_parent);
+  String get connectionTimeout => "Przekroczono czas oczekiwania na połączenie";
+  String get connectionError => "Błąd połączenia";
+  String get forbidden => "Brak uprawnień";
+  String get serverError => "Błąd serwera";
+  String get internalError => "Wystąpił błąd";
+  String get unauthorized => "Nieprawidłowe dane logowania";
+  Object operator [](String key) {
+    var index = key.indexOf('.');
+    if (index > 0) {
+      return (this[key.substring(0, index)]
+          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+    }
+    switch (key) {
+      case 'connectionTimeout':
+        return connectionTimeout;
+      case 'connectionError':
+        return connectionError;
+      case 'forbidden':
+        return forbidden;
+      case 'serverError':
+        return serverError;
+      case 'internalError':
+        return internalError;
+      case 'unauthorized':
+        return unauthorized;
       default:
         return super[key];
     }

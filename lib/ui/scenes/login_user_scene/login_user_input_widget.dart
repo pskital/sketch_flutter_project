@@ -13,7 +13,7 @@ class LoginInputWidget extends BlocWidget<LoginUserBloc, UserLoginState?> {
       children: <Widget>[
         const SizedBox(height: 10),
         Text(
-          AppTranslations.get().login.login,
+          translations.login.login,
           style: TextStyles.headerTextStyle(),
         ),
         const SizedBox(height: 10),

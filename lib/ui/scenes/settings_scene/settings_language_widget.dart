@@ -17,7 +17,7 @@ class SettingsLanguageWidget extends BlocWidget<LanguageBloc, LanguageState> {
       children: <Widget>[
         const SizedBox(height: 10),
         Text(
-          AppTranslations.get().settings.language,
+          translations.settings.language,
           style: TextStyles.headerTextStyle(),
         ),
         const SizedBox(height: 10),
@@ -33,7 +33,7 @@ class SettingsLanguageWidget extends BlocWidget<LanguageBloc, LanguageState> {
               ),
             ),
             Text(
-              AppTranslations.get().settings.system,
+              translations.settings.system,
               style: TextStyles.bodyTextStyle(),
             ),
           ],

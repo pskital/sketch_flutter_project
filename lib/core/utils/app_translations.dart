@@ -20,3 +20,5 @@ class AppTranslations {
     return _translations;
   }
 }
+
+Translations translations = translations;

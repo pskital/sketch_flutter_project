@@ -19,13 +19,13 @@ mixin PasswordRecoveryStateListener {
       case PasswordRecoveryStatus.success:
         showSnackBar(
           context,
-          AppTranslations.get().passwordRecovery.passwordRecoverySuccess,
+          translations.passwordRecovery.passwordRecoverySuccess,
         );
         break;
       case PasswordRecoveryStatus.error:
         showSnackBar(
           context,
-          AppTranslations.get().passwordRecovery.passwordRecoveryError,
+          translations.passwordRecovery.passwordRecoveryError,
         );
         break;
       default:

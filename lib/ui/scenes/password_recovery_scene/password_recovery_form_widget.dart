@@ -22,7 +22,7 @@ class PasswordRecoveryFormWidget extends StatelessWidget {
         children: <Widget>[
           const SizedBox(height: 10),
           Text(
-            AppTranslations.get().passwordRecovery.email,
+            translations.passwordRecovery.email,
             style: TextStyles.headerTextStyle(),
           ),
           const SizedBox(height: 10),
@@ -40,7 +40,7 @@ class PasswordRecoveryFormWidget extends StatelessWidget {
           ElevatedButton(
             onPressed: () => _recoveryPassword(context),
             child: Text(
-              AppTranslations.get().passwordRecovery.sendButton,
+              translations.passwordRecovery.sendButton,
             ),
           )
         ],

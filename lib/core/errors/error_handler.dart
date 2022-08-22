@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/errors/error_state.dart';
+import 'package:sketch_flutter_project/core/utils/app_translations.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
 
 mixin ErrorHandler {
@@ -18,16 +19,34 @@ mixin ErrorHandler {
     }
   }
 
-  String handleDioError(DioError error) {
-    final Response<dynamic>? response = error.response;
-    if (response != null) {
-      if (response.statusCode == HttpStatus.forbidden) {
-        return forbiddenMessage();
-      }
+  String handleDioError(DioError dioError) {
+    switch (dioError.type) {
+      case DioErrorType.connectTimeout:
+      case DioErrorType.sendTimeout:
+      case DioErrorType.receiveTimeout:
+        return translations.errors.connectionTimeout;
+      case DioErrorType.response:
+        return handleServerError(dioError);
+      case DioErrorType.cancel:
+      case DioErrorType.other:
+        return translations.errors.connectionError;
+    }
+  }
 
-      return response.data;
-    } else {
-      return 'unknown error';
+  String handleServerError(DioError dioError) {
+    final Response<dynamic>? response = dioError.response;
+    switch (response?.statusCode) {
+      case HttpStatus.unauthorized:
+        return translations.errors.unauthorized;
+      case HttpStatus.forbidden:
+        return translations.errors.forbidden;
+      case HttpStatus.internalServerError:
+        return translations.errors.serverInternalError;
+      case HttpStatus.badRequest:
+        // TODO(przemek): parse server error
+        return response?.data ?? translations.errors.connectionError;
+      default:
+        return translations.errors.connectionError;
     }
   }
 
@@ -36,11 +55,7 @@ mixin ErrorHandler {
       case UserLoginErrorState:
         return 'login error';
       default:
-        return 'unknown error';
+        return translations.errors.internalError;
     }
-  }
-
-  String forbiddenMessage() {
-    return 'Brak dostępu';
   }
 }

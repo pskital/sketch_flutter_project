@@ -19,4 +19,10 @@ passwordRecovery:
   sendButton: Wyślij
   passwordRecoverySuccess: Odzyskiwanie hasła zakośczone sukcesem
   passwordRecoveryError: Błąd odzyskiwania hasła
-
+errors:
+  connectionTimeout: Przekroczono czas oczekiwania na połączenie
+  connectionError: Błąd połączenia
+  forbidden: Brak uprawnień
+  serverError: Błąd serwera
+  internalError: Wystąpił błąd
+  unauthorized: Nieprawidłowe dane logowania

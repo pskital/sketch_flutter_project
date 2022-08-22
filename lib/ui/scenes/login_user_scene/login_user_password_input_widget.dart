@@ -14,7 +14,7 @@ class LoginPasswordInputWidget
       children: <Widget>[
         const SizedBox(height: 10),
         Text(
-          AppTranslations.get().login.password,
+          translations.login.password,
           style: TextStyles.headerTextStyle(),
         ),
         const SizedBox(height: 10),

@@ -19,4 +19,10 @@ passwordRecovery:
   sendButton: Send
   passwordRecoverySuccess: Password recovery success
   passwordRecoveryError: Password recovery error
-
+errors:
+  connectionTimeout: Connection timeout
+  connectionError: Connection error
+  forbidden: Forbidden
+  serverInternalError: Server error
+  internalError: An error occurred
+  unauthorized: Bad credentials

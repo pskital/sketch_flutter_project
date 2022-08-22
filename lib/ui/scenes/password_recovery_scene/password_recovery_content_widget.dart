@@ -14,7 +14,7 @@ class PasswordRecoveryContentWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          AppTranslations.get().passwordRecovery.pageTitle,
+          translations.passwordRecovery.pageTitle,
         ),
       ),
       body: Center(

@@ -96,8 +96,8 @@ class LoginUserBloc extends Bloc<UserLoginEvent, UserLoginState> {
       * */
 
       ///jesli blad emitujemy error
-      //emit(UserLoginErrorState(error));
-      emit(const UserLoginSuccessState());
+      emit(UserLoginErrorState(error));
+      //emit(const UserLoginSuccessState());
     } finally {
       ///opcjonalnie resetujemy state
       emit(const UserLoginIdleState());

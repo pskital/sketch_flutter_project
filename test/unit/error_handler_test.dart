@@ -5,12 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:sketch_flutter_project/core/errors/error_handler.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
 
-class ErrorHandlerTest with ErrorHandler {
-  @override
-  String forbiddenMessage() {
-    return 'No access';
-  }
-}
+class ErrorHandlerTest with ErrorHandler {}
 
 void main() {
   final ErrorHandlerTest errorHandler = ErrorHandlerTest();

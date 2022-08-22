@@ -7,7 +7,7 @@ class AppBarWidget extends AppBarBaseWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(
-        AppTranslations.get().login.pageTitle,
+        translations.login.pageTitle,
       ),
     );
   }

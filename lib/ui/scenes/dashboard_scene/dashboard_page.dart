@@ -32,11 +32,11 @@ class DashboardWidget extends BlocBuilderWidget<DashboardBloc, int> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: const Icon(Icons.home),
-            label: AppTranslations.get().dashboard.home,
+            label: translations.dashboard.home,
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.settings),
-            label: AppTranslations.get().dashboard.settings,
+            label: translations.dashboard.settings,
           ),
         ],
         onTap: bloc.setCurrentPage,

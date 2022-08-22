@@ -14,7 +14,7 @@ class SettingThemeWidget extends BlocWidget<ThemeBloc, ThemeType> {
       children: <Widget>[
         const SizedBox(height: 10),
         Text(
-          AppTranslations.get().settings.appereanceHeader,
+          translations.settings.appereanceHeader,
           style: TextStyles.headerTextStyle(),
         ),
         const SizedBox(height: 10),
@@ -27,7 +27,7 @@ class SettingThemeWidget extends BlocWidget<ThemeBloc, ThemeType> {
                   _changeTheme(themeType, bloc),
             ),
             Text(
-              AppTranslations.get().settings.system,
+              translations.settings.system,
               style: TextStyles.bodyTextStyle(),
             )
           ],
@@ -41,7 +41,7 @@ class SettingThemeWidget extends BlocWidget<ThemeBloc, ThemeType> {
                   _changeTheme(themeType, bloc),
             ),
             Text(
-              AppTranslations.get().settings.light,
+              translations.settings.light,
               style: TextStyles.bodyTextStyle(),
             )
           ],
@@ -55,7 +55,7 @@ class SettingThemeWidget extends BlocWidget<ThemeBloc, ThemeType> {
                   _changeTheme(themeType, bloc),
             ),
             Text(
-              AppTranslations.get().settings.dark,
+              translations.settings.dark,
               style: TextStyles.bodyTextStyle(),
             )
           ],
@@ -69,7 +69,7 @@ class SettingThemeWidget extends BlocWidget<ThemeBloc, ThemeType> {
                   _changeTheme(themeType, bloc),
             ),
             Text(
-              AppTranslations.get().settings.custom,
+              translations.settings.custom,
               style: TextStyles.bodyTextStyle(),
             )
           ],

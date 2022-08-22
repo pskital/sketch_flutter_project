@@ -40,6 +40,7 @@ class Translations implements i69n.I69nMessageBundle {
   DashboardTranslations get dashboard => DashboardTranslations(this);
   PasswordRecoveryTranslations get passwordRecovery =>
       PasswordRecoveryTranslations(this);
+  ErrorsTranslations get errors => ErrorsTranslations(this);
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -55,6 +56,8 @@ class Translations implements i69n.I69nMessageBundle {
         return dashboard;
       case 'passwordRecovery':
         return passwordRecovery;
+      case 'errors':
+        return errors;
       default:
         return key;
     }
@@ -170,6 +173,40 @@ class PasswordRecoveryTranslations implements i69n.I69nMessageBundle {
         return passwordRecoverySuccess;
       case 'passwordRecoveryError':
         return passwordRecoveryError;
+      default:
+        return key;
+    }
+  }
+}
+
+class ErrorsTranslations implements i69n.I69nMessageBundle {
+  final Translations _parent;
+  const ErrorsTranslations(this._parent);
+  String get connectionTimeout => "Connection timeout";
+  String get connectionError => "Connection error";
+  String get forbidden => "Forbidden";
+  String get serverInternalError => "Server error";
+  String get internalError => "An error occurred";
+  String get unauthorized => "Bad credentials";
+  Object operator [](String key) {
+    var index = key.indexOf('.');
+    if (index > 0) {
+      return (this[key.substring(0, index)]
+          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+    }
+    switch (key) {
+      case 'connectionTimeout':
+        return connectionTimeout;
+      case 'connectionError':
+        return connectionError;
+      case 'forbidden':
+        return forbidden;
+      case 'serverInternalError':
+        return serverInternalError;
+      case 'internalError':
+        return internalError;
+      case 'unauthorized':
+        return unauthorized;
       default:
         return key;
     }
