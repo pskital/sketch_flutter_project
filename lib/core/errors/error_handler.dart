@@ -4,18 +4,17 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/errors/error_state.dart';
 import 'package:sketch_flutter_project/core/utils/app_translations.dart';
-import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
 
 mixin ErrorHandler {
   String handleError(ErrorState errorState) {
     final Object? error = errorState.getError();
     debugPrint(error.toString());
 
-    switch (error.runtimeType) {
+    switch (error?.runtimeType) {
       case DioError:
         return handleDioError(error! as DioError);
       default:
-        return handleInternalError(errorState);
+        return translations.errors.internalError;
     }
   }
 
@@ -47,15 +46,6 @@ mixin ErrorHandler {
         return response?.data ?? translations.errors.connectionError;
       default:
         return translations.errors.connectionError;
-    }
-  }
-
-  String handleInternalError(ErrorState errorState) {
-    switch (errorState.runtimeType) {
-      case UserLoginErrorState:
-        return 'login error';
-      default:
-        return translations.errors.internalError;
     }
   }
 }

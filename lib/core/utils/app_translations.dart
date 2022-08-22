@@ -21,4 +21,4 @@ class AppTranslations {
   }
 }
 
-Translations translations = translations;
+Translations get translations => AppTranslations.get();
