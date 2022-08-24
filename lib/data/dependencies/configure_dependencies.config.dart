@@ -9,7 +9,8 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:sketch_flutter_project/core/form_validation/user_login_form_validator.dart'
     as _i5;
-import 'package:sketch_flutter_project/core/utils/app_translations.dart' as _i3;
+import 'package:sketch_flutter_project/core/translations/app_translations.dart'
+    as _i3;
 import 'package:sketch_flutter_project/data/dependencies/modules/api_module.dart'
     as _i18;
 import 'package:sketch_flutter_project/data/dependencies/modules/app_module.dart'

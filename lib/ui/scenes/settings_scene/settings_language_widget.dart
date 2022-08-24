@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/enums/lang_type.dart';
 import 'package:sketch_flutter_project/core/keys/keys.dart';
 import 'package:sketch_flutter_project/core/styles/text_styles.dart';
-import 'package:sketch_flutter_project/core/utils/app_translations.dart';
+import 'package:sketch_flutter_project/core/translations/app_translations.dart';
 import 'package:sketch_flutter_project/logic/language/language_bloc.dart';
 import 'package:sketch_flutter_project/logic/language/language_event.dart';
 import 'package:sketch_flutter_project/logic/language/language_state.dart';

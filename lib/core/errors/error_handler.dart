@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/errors/error_state.dart';
-import 'package:sketch_flutter_project/core/utils/app_translations.dart';
+import 'package:sketch_flutter_project/core/translations/app_translations.dart';
 
 mixin ErrorHandler {
   String handleError(ErrorState errorState) {

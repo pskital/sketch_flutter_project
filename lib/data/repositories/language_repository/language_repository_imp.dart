@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sketch_flutter_project/core/constants/storage_keys.dart';
 import 'package:sketch_flutter_project/core/enums/lang_type.dart';
-import 'package:sketch_flutter_project/core/utils/app_translations.dart';
+import 'package:sketch_flutter_project/core/translations/app_translations.dart';
 import 'package:sketch_flutter_project/data/dependencies/configure_dependencies.dart';
 import 'package:sketch_flutter_project/data/repositories/language_repository/language_repository.dart';
 import 'package:sketch_flutter_project/data/storage/local_storage.dart';

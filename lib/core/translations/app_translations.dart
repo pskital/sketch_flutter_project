@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
-import 'package:sketch_flutter_project/data/translations/translations.i69n.dart';
-import 'package:sketch_flutter_project/data/translations/translations_pl.i69n.dart';
+import 'package:sketch_flutter_project/core/translations/translations.i69n.dart';
+import 'package:sketch_flutter_project/core/translations/translations_pl.i69n.dart';
 
 @singleton
 class AppTranslations {

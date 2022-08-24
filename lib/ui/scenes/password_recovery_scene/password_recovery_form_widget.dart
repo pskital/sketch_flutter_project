@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sketch_flutter_project/core/constants/paddings.dart';
 import 'package:sketch_flutter_project/core/form_validation/password_recovery_form_validator.dart';
 import 'package:sketch_flutter_project/core/styles/text_styles.dart';
-import 'package:sketch_flutter_project/core/utils/app_translations.dart';
+import 'package:sketch_flutter_project/core/translations/app_translations.dart';
 import 'package:sketch_flutter_project/logic/redux/app_state.dart';
 import 'package:sketch_flutter_project/logic/redux/password_recovery/password_recovery_action.dart';
 

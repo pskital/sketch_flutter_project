@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sketch_flutter_project/core/errors/error_handler.dart';
-import 'package:sketch_flutter_project/core/utils/app_translations.dart';
+import 'package:sketch_flutter_project/core/translations/app_translations.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
 
 class ErrorHandlerTest with ErrorHandler {}
