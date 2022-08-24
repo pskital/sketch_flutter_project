@@ -21,4 +21,6 @@ void main() async {
       child: const FlutterApp(),
     ),
   );
+
+  int c1;
 }
