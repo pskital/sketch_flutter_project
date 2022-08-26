@@ -71,6 +71,7 @@ class LoginTranslations implements i69n.I69nMessageBundle {
   String get login => "Login";
   String get password => "Password";
   String get passwordRecovery => "Password recovery";
+  String get liginSubmit => "Login";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -86,6 +87,8 @@ class LoginTranslations implements i69n.I69nMessageBundle {
         return password;
       case 'passwordRecovery':
         return passwordRecovery;
+      case 'liginSubmit':
+        return liginSubmit;
       default:
         return key;
     }

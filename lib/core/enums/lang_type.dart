@@ -1,9 +1,9 @@
-enum LangType {
+enum LanguageType {
   system('system'),
   pl('pl'),
   en('en');
 
-  const LangType(this.value);
+  const LanguageType(this.value);
 
   final String value;
 }

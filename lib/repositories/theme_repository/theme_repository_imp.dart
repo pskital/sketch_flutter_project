@@ -5,8 +5,8 @@ import 'package:sketch_flutter_project/core/enums/theme_type.dart';
 import 'package:sketch_flutter_project/core/themes/custom_theme.dart';
 import 'package:sketch_flutter_project/core/themes/dark_theme.dart';
 import 'package:sketch_flutter_project/core/themes/light_theme.dart';
-import 'package:sketch_flutter_project/data/repositories/theme_repository/theme_repository.dart';
 import 'package:sketch_flutter_project/data/storage/local_storage.dart';
+import 'package:sketch_flutter_project/repositories/theme_repository/theme_repository.dart';
 
 @injectable
 class ThemeRepositoryImp implements ThemeRepository {

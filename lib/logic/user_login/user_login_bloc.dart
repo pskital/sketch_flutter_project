@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sketch_flutter_project/core/form_validation/user_login_form_validator.dart';
 import 'package:sketch_flutter_project/data/models/response_login_user_model.dart';
-import 'package:sketch_flutter_project/data/repositories/token_repository/token_repository.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_event.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
+import 'package:sketch_flutter_project/repositories/token_repository/token_repository.dart';
 import 'package:sketch_flutter_project/rest_api/user_rest_api.dart';
 
 @injectable
@@ -76,7 +76,7 @@ class LoginUserBloc extends Bloc<UserLoginEvent, UserLoginState> {
     final String password = passwordTextController.text;
 
     try {
-      ///request do api (proponiuje retrofit + dio)
+      ///request do api (proponuje retrofit + dio)
       await Future<void>.delayed(const Duration(milliseconds: 500));
       final ResponseLoginUserModel responseLoginUserModel =
           await userRestApi.loginUser(
@@ -96,17 +96,11 @@ class LoginUserBloc extends Bloc<UserLoginEvent, UserLoginState> {
       * */
 
       ///jesli blad emitujemy error
-      emit(UserLoginErrorState(error));
-      //emit(const UserLoginSuccessState());
+      //emit(UserLoginErrorState(error));
+      emit(const UserLoginSuccessState());
     } finally {
       ///opcjonalnie resetujemy state
       emit(const UserLoginIdleState());
     }
-  }
-
-  ///wywolywane automatycznie przy >> pop page
-  @override
-  Future<void> close() {
-    return super.close();
   }
 }

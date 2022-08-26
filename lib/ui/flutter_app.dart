@@ -61,6 +61,6 @@ class _FlutterAppState extends BlocState<FlutterApp>
   @override
   void didChangeLocales(List<Locale>? locales) {
     super.didChangeLocales(locales);
-    context.read<LanguageBloc>().add(SetSystemLocaleEvent(locales: locales));
+    context.read<LanguageBloc>().add(UpdateSystemLocaleEvent(locales: locales));
   }
 }

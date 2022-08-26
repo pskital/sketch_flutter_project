@@ -33,7 +33,7 @@ class _LoginUserButtonWidgetState extends BlocState<LoginUserButtonWidget> {
                       ? null
                       : () => bloc.add(const UserLoginEvent()),
                   child: Text(
-                    translations.login.login,
+                    translations.login.liginSubmit,
                   ),
                 ),
               ),

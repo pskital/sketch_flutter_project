@@ -11,7 +11,7 @@ import 'package:sketch_flutter_project/ui/widgets/bloc_widget.dart';
 class SettingsLanguageWidget extends BlocWidget<LanguageBloc, LanguageState> {
   @override
   Widget buildWidget(BuildContext context, LanguageBloc bloc) {
-    final LangType langType = bloc.state.langType;
+    final LanguageType langType = bloc.state.langType;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -23,10 +23,10 @@ class SettingsLanguageWidget extends BlocWidget<LanguageBloc, LanguageState> {
         const SizedBox(height: 10),
         Row(
           children: <Widget>[
-            Radio<LangType>(
-              value: LangType.system,
+            Radio<LanguageType>(
+              value: LanguageType.system,
               groupValue: langType,
-              onChanged: (LangType? langType) => bloc.add(
+              onChanged: (LanguageType? langType) => bloc.add(
                 SetLanguageEvent(
                   langType: langType,
                 ),
@@ -40,11 +40,11 @@ class SettingsLanguageWidget extends BlocWidget<LanguageBloc, LanguageState> {
         ),
         Row(
           children: <Widget>[
-            Radio<LangType>(
+            Radio<LanguageType>(
               key: Keys.langTypePlRadioKey,
-              value: LangType.pl,
+              value: LanguageType.pl,
               groupValue: langType,
-              onChanged: (LangType? langType) => bloc.add(
+              onChanged: (LanguageType? langType) => bloc.add(
                 SetLanguageEvent(
                   langType: langType,
                 ),
@@ -58,11 +58,11 @@ class SettingsLanguageWidget extends BlocWidget<LanguageBloc, LanguageState> {
         ),
         Row(
           children: <Widget>[
-            Radio<LangType>(
+            Radio<LanguageType>(
               key: Keys.langTypeENRadioKey,
-              value: LangType.en,
+              value: LanguageType.en,
               groupValue: langType,
-              onChanged: (LangType? langType) => bloc.add(
+              onChanged: (LanguageType? langType) => bloc.add(
                 SetLanguageEvent(
                   langType: langType,
                 ),

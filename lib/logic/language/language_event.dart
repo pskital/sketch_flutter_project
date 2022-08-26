@@ -7,12 +7,12 @@ abstract class LanguageEvent {}
 class SetLanguageEvent implements LanguageEvent {
   const SetLanguageEvent({required this.langType});
 
-  final LangType? langType;
+  final LanguageType? langType;
 }
 
 @immutable
-class SetSystemLocaleEvent implements LanguageEvent {
-  const SetSystemLocaleEvent({required this.locales});
+class UpdateSystemLocaleEvent implements LanguageEvent {
+  const UpdateSystemLocaleEvent({required this.locales});
 
   final List<Locale>? locales;
 }

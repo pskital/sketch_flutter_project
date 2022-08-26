@@ -2,8 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sketch_flutter_project/core/enums/theme_type.dart';
-import 'package:sketch_flutter_project/data/repositories/theme_repository/theme_repository.dart';
 import 'package:sketch_flutter_project/logic/theme/theme_action.dart';
+import 'package:sketch_flutter_project/repositories/theme_repository/theme_repository.dart';
 
 @injectable
 class ThemeBloc extends Bloc<ChangeThemeAction, ThemeType> {

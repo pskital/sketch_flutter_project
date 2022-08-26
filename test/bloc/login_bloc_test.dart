@@ -4,10 +4,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:sketch_flutter_project/core/form_validation/user_login_form_validator.dart';
 import 'package:sketch_flutter_project/data/models/response_login_user_model.dart';
-import 'package:sketch_flutter_project/data/repositories/token_repository/token_repository.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_bloc.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_event.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
+import 'package:sketch_flutter_project/repositories/token_repository/token_repository.dart';
 import 'package:sketch_flutter_project/rest_api/user_rest_api.dart';
 
 class MockLoginFormValidator extends Mock implements UserLoginFormValidator {}

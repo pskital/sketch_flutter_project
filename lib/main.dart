@@ -21,6 +21,4 @@ void main() async {
       child: const FlutterApp(),
     ),
   );
-  int z1;
-  int z4;
 }

@@ -1,24 +1,27 @@
 import 'package:injectable/injectable.dart';
+import 'package:sketch_flutter_project/core/constants/language.dart';
 import 'package:sketch_flutter_project/core/translations/translations.i69n.dart';
 import 'package:sketch_flutter_project/core/translations/translations_pl.i69n.dart';
+import 'package:sketch_flutter_project/data/dependencies/configure_dependencies.dart';
 
 @singleton
 class AppTranslations {
-  static Translations _translations = const Translations();
-
-  final Map<String, Translations Function()> _translationsMap =
+  final Map<String, Translations Function()> translationsMap =
       <String, Translations Function()>{
-    'en': () => const Translations(),
-    'pl': () => const Translations_pl(),
+    Language.langCodeEN: () => const Translations(),
+    Language.langCodePL: () => const Translations_pl(),
   };
 
-  void setCurrentTranslations(String code) {
-    _translations = _translationsMap[code]!();
+  late Translations _translations =
+      translationsMap[Language.defaultLanguageCode]!();
+
+  void setTranslations(String code) {
+    _translations = translationsMap[code]!();
   }
 
-  static Translations get() {
+  Translations get() {
     return _translations;
   }
 }
 
-Translations get translations => AppTranslations.get();
+Translations get translations => serviceLocator<AppTranslations>().get();

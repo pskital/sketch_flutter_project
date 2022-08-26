@@ -6,7 +6,7 @@ import 'package:sketch_flutter_project/core/enums/lang_type.dart';
 abstract class LanguageState extends Equatable {
   const LanguageState(this.langType);
 
-  final LangType langType;
+  final LanguageType langType;
 
   @override
   List<Object?> get props => <Object?>[];
@@ -14,14 +14,14 @@ abstract class LanguageState extends Equatable {
 
 @immutable
 class SetLanguageState extends LanguageState {
-  const SetLanguageState(LangType langType) : super(langType);
+  const SetLanguageState(LanguageType langType) : super(langType);
 
   @override
   List<Object?> get props => <Object?>[langType];
 }
 
-class SetSystemLocalesState extends LanguageState {
-  SetSystemLocalesState(LangType langType) : super(langType);
+class UpdateSystemLocalesState extends LanguageState {
+  UpdateSystemLocalesState(LanguageType langType) : super(langType);
   final UniqueKey uniqueKey = UniqueKey();
 
   @override

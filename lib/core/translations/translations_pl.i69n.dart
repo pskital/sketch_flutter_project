@@ -72,6 +72,7 @@ class LoginTranslations_pl extends LoginTranslations {
   String get login => "Login";
   String get password => "Hasło";
   String get passwordRecovery => "Odzyskiwanie hasła";
+  String get liginSubmit => "Zaloguj się";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -87,6 +88,8 @@ class LoginTranslations_pl extends LoginTranslations {
         return password;
       case 'passwordRecovery':
         return passwordRecovery;
+      case 'liginSubmit':
+        return liginSubmit;
       default:
         return super[key];
     }

@@ -3,6 +3,7 @@ login:
   login: Login
   password: Password
   passwordRecovery: Password recovery
+  liginSubmit: Login
 settings:
   appereanceHeader: Appereance
   light: Light

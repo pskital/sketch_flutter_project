@@ -4,8 +4,8 @@ import 'package:sketch_flutter_project/data/storage/local_storage/shared_prefere
 
 @module
 abstract class AppModule {
+
   @preResolve
-  @singleton
   Future<LocalStorage> provideLocalStorage(
     SharedPreferencesStorage sharedPreferencesStorage,
   ) async {
