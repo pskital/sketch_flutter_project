@@ -1,8 +1,8 @@
 import 'package:injectable/injectable.dart';
 import 'package:sketch_flutter_project/core/constants/language.dart';
+import 'package:sketch_flutter_project/core/dependencies/configure_dependencies.dart';
 import 'package:sketch_flutter_project/core/translations/translations.i69n.dart';
 import 'package:sketch_flutter_project/core/translations/translations_pl.i69n.dart';
-import 'package:sketch_flutter_project/data/dependencies/configure_dependencies.dart';
 
 @singleton
 class AppTranslations {

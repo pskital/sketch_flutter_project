@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sketch_flutter_project/core/constants/paddings.dart';
-import 'package:sketch_flutter_project/core/route/app_route.dart';
-import 'package:sketch_flutter_project/core/styles/text_styles.dart';
-import 'package:sketch_flutter_project/core/translations/app_translations.dart';
-import 'package:sketch_flutter_project/data/dependencies/configure_dependencies.dart';
+import 'package:sketch_flutter_project/core/dependencies/configure_dependencies.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_bloc.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
 import 'package:sketch_flutter_project/ui/scenes/login_user_scene/login_user_app_bar_widget.dart';
@@ -41,32 +38,11 @@ class LoginUserWidget extends BlocWidget<LoginUserBloc, UserLoginState>
                 LoginInputWidget(),
                 LoginPasswordInputWidget(),
                 LoginUserButtonWidget(),
-                PasswordRecoveryWidget()
               ],
             ),
           ),
         ),
       ),
-    );
-  }
-}
-
-class PasswordRecoveryWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        const SizedBox(height: 40),
-        GestureDetector(
-          onTap: () =>
-              Navigator.of(context).pushNamed(AppRoute.passwordRecovery),
-          child: Text(
-            translations.login.passwordRecovery,
-            style: TextStyles.bodyTextStyle(),
-          ),
-        ),
-      ],
     );
   }
 }

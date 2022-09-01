@@ -1,9 +1,9 @@
 import 'package:injectable/injectable.dart';
 import 'package:sketch_flutter_project/core/constants/storage_keys.dart';
 import 'package:sketch_flutter_project/data/storage/local_storage.dart';
-import 'package:sketch_flutter_project/repositories/token_repository/token_repository.dart';
+import 'package:sketch_flutter_project/repositories/local/token_repository/token_repository.dart';
 
-@Injectable(as: TokenRepository)
+@Singleton(as: TokenRepository)
 class TokenRepositoryImp implements TokenRepository {
   TokenRepositoryImp({required this.localStorage});
 

@@ -8,13 +8,13 @@ import 'package:sketch_flutter_project/logic/user_login/user_login_bloc.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_event.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
 import 'package:sketch_flutter_project/repositories/token_repository/token_repository.dart';
-import 'package:sketch_flutter_project/rest_api/user_rest_api.dart';
+import 'package:sketch_flutter_project/repositories/remote/user_repository/user_repository.dart';
 
 class MockLoginFormValidator extends Mock implements UserLoginFormValidator {}
 
 class MockTokenRepository extends Mock implements TokenRepository {}
 
-class MockUserRestApi extends Mock implements UserRestApi {}
+class MockUserRestApi extends Mock implements UserRepository {}
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,39 +36,45 @@ void main() {
     );
   });
 
-  blocTest<LoginUserBloc, UserLoginState?>('test incorrect login credentials',
-      setUp: () {
-        when(() => mockLoginFormValidator.isFormValid()).thenReturn(false);
-      },
-      wait: const Duration(milliseconds: 700),
-      build: () => loginUserBloc,
-      act: (LoginUserBloc bloc) {
-        bloc.add(const UserLoginEvent());
-      },
-      expect: () => <UserLoginState>[
-            UserLoginInProgressState(),
-            const UserLoginErrorState('invalidCredentials'),
-          ],);
+  blocTest<LoginUserBloc, UserLoginState?>(
+    'test incorrect login credentials',
+    setUp: () {
+      when(() => mockLoginFormValidator.isFormValid()).thenReturn(false);
+    },
+    wait: const Duration(milliseconds: 700),
+    build: () => loginUserBloc,
+    act: (LoginUserBloc bloc) {
+      bloc.add(const UserLoginEvent());
+    },
+    expect: () => <UserLoginState>[
+      UserLoginInProgressState(),
+      const UserLoginErrorState('invalidCredentials'),
+    ],
+  );
 
   final ResponseLoginUserModel responseLoginUserModel =
       ResponseLoginUserModel('token');
-  blocTest<LoginUserBloc, UserLoginState?>('test login success request',
-      setUp: () {
-        when(() => mockLoginFormValidator.isFormValid()).thenReturn(true);
-        when(() => mockUserRestApi.loginUser('test@gmail.com', 'test123', true))
-            .thenAnswer((_) async =>
-                Future<ResponseLoginUserModel>.value(responseLoginUserModel),);
-        when(() => mockTokenRepository.saveToken(responseLoginUserModel.token))
-            .thenAnswer((_) async => Future<void>.value());
-      },
-      wait: const Duration(milliseconds: 700),
-      build: () => loginUserBloc,
-      act: (LoginUserBloc bloc) {
-        bloc.add(const UserLoginEvent());
-      },
-      expect: () => <UserLoginState>[
-            UserLoginInProgressState(),
-            const UserLoginSuccessState(),
-            const UserLoginIdleState()
-          ],);
+  blocTest<LoginUserBloc, UserLoginState?>(
+    'test login success request',
+    setUp: () {
+      when(() => mockLoginFormValidator.isFormValid()).thenReturn(true);
+      when(() => mockUserRestApi.loginUser('test@gmail.com', 'test123', true))
+          .thenAnswer(
+        (_) async =>
+            Future<ResponseLoginUserModel>.value(responseLoginUserModel),
+      );
+      when(() => mockTokenRepository.saveToken(responseLoginUserModel.token))
+          .thenAnswer((_) async => Future<void>.value());
+    },
+    wait: const Duration(milliseconds: 700),
+    build: () => loginUserBloc,
+    act: (LoginUserBloc bloc) {
+      bloc.add(const UserLoginEvent());
+    },
+    expect: () => <UserLoginState>[
+      UserLoginInProgressState(),
+      const UserLoginSuccessState(),
+      const UserLoginIdleState()
+    ],
+  );
 }

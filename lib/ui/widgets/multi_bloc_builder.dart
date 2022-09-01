@@ -55,6 +55,8 @@ class BlocStates {
 
   final List<dynamic> _stateContainer = <dynamic>[];
 
-  T get<T>() => _stateContainer.firstWhere((dynamic entry) => entry is T,
-      orElse: () => null,);
+  T get<T>() => _stateContainer.firstWhere(
+        (dynamic entry) => entry is T,
+        orElse: () => null,
+      );
 }

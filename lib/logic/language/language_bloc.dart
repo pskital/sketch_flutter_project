@@ -4,10 +4,10 @@ import 'package:injectable/injectable.dart';
 import 'package:sketch_flutter_project/core/constants/language.dart';
 import 'package:sketch_flutter_project/core/enums/lang_type.dart';
 import 'package:sketch_flutter_project/core/translations/app_translations.dart';
-import 'package:sketch_flutter_project/data/dependencies/configure_dependencies.dart';
+import 'package:sketch_flutter_project/core/dependencies/configure_dependencies.dart';
 import 'package:sketch_flutter_project/logic/language/language_event.dart';
 import 'package:sketch_flutter_project/logic/language/language_state.dart';
-import 'package:sketch_flutter_project/repositories/language_repository/language_repository.dart';
+import 'package:sketch_flutter_project/repositories/local/language_repository/language_repository.dart';
 
 @injectable
 class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
@@ -85,12 +85,11 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
     );
   }
 
-  bool _isLanguageSupported(String languageCode) {
-    return serviceLocator<AppTranslations>()
-        .translationsMap
-        .keys
-        .contains(languageCode);
-  }
+  bool _isLanguageSupported(String languageCode) =>
+      serviceLocator<AppTranslations>()
+          .translationsMap
+          .keys
+          .contains(languageCode);
 
   void _setTranslations() {
     final String languageCode = _getLanguageCode();

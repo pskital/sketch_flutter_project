@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_rest_api.dart';
+part of 'user_repository.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'user_rest_api.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps
 
-class _UserRestApi implements UserRestApi {
-  _UserRestApi(this._dio, {this.baseUrl});
+class _UserRepository implements UserRepository {
+  _UserRepository(this._dio, {this.baseUrl});
 
   final Dio _dio;
 
@@ -20,18 +20,22 @@ class _UserRestApi implements UserRestApi {
       login, password, isPrivacyAccepted) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'content-type': 'application/json'};
+    _headers.removeWhere((k, v) => v == null);
     final _data = {
       'login': login,
       'password': password,
       'isPrivacyAccepted': isPrivacyAccepted
     };
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ResponseLoginUserModel>(
-            Options(method: 'POST', headers: _headers, extra: _extra)
-                .compose(_dio.options, '/api/User/LoginUser',
-                    queryParameters: queryParameters, data: _data)
-                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+        _setStreamType<ResponseLoginUserModel>(Options(
+                method: 'POST',
+                headers: _headers,
+                extra: _extra,
+                contentType: 'application/json')
+            .compose(_dio.options, 'api/User/LoginUser',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ResponseLoginUserModel.fromJson(_result.data!);
     return value;
   }
@@ -40,14 +44,18 @@ class _UserRestApi implements UserRestApi {
   Future<ResponseLoginUserModel> recoveryPassword(email) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'content-type': 'application/json'};
+    _headers.removeWhere((k, v) => v == null);
     final _data = {'email': email};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ResponseLoginUserModel>(
-            Options(method: 'POST', headers: _headers, extra: _extra)
-                .compose(_dio.options, '/api/User/RecoveryPassword',
-                    queryParameters: queryParameters, data: _data)
-                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+        _setStreamType<ResponseLoginUserModel>(Options(
+                method: 'POST',
+                headers: _headers,
+                extra: _extra,
+                contentType: 'application/json')
+            .compose(_dio.options, 'api/User/RecoveryPassword',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ResponseLoginUserModel.fromJson(_result.data!);
     return value;
   }

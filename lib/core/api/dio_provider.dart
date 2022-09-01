@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:sketch_flutter_project/repositories/token_repository/token_repository.dart';
+import 'package:sketch_flutter_project/core/api/curl_interceptor.dart';
+import 'package:sketch_flutter_project/repositories/local/token_repository/token_repository.dart';
 
 @singleton
 class DioProvider {
@@ -9,14 +10,8 @@ class DioProvider {
   final TokenRepository tokenRepository;
 
   Dio getDio() {
-    final LogInterceptor logInterceptor = LogInterceptor(
-      responseBody: true,
-      requestBody: true,
-      requestHeader: true,
-    );
-
     final Dio dio = Dio();
-    dio.interceptors.add(logInterceptor);
+    dio.interceptors.add(CurlInterceptor());
     dio.options.responseType = ResponseType.json;
     dio.options.connectTimeout = 10000;
 

@@ -29,14 +29,16 @@ void main() {
   testWidgets('test login button check is visible when idle state',
       (WidgetTester tester) async {
     whenListen<UserLoginState>(
-        mockBloc,
-        Stream<UserLoginState>.fromIterable(
-          <UserLoginState>[],
-        ),
-        initialState: const UserLoginIdleState(),);
+      mockBloc,
+      Stream<UserLoginState>.fromIterable(
+        <UserLoginState>[],
+      ),
+      initialState: const UserLoginIdleState(),
+    );
 
     await tester.pumpWidget(
-        createWidget(child: LoginUserButtonWidget(), bloc: mockBloc),);
+      createWidget(child: LoginUserButtonWidget(), bloc: mockBloc),
+    );
 
     await tester.ensureVisible(find.byType(ElevatedButton));
     expect(find.byType(CircularProgressIndicator), findsNothing);
@@ -45,14 +47,16 @@ void main() {
   testWidgets('test login button check is visible when error state',
       (WidgetTester tester) async {
     whenListen<UserLoginState>(
-        mockBloc,
-        Stream<UserLoginState>.fromIterable(
-          <UserLoginState>[],
-        ),
-        initialState: const UserLoginErrorState('error'),);
+      mockBloc,
+      Stream<UserLoginState>.fromIterable(
+        <UserLoginState>[],
+      ),
+      initialState: const UserLoginErrorState('error'),
+    );
 
     await tester.pumpWidget(
-        createWidget(child: LoginUserButtonWidget(), bloc: mockBloc),);
+      createWidget(child: LoginUserButtonWidget(), bloc: mockBloc),
+    );
 
     await tester.ensureVisible(find.byType(ElevatedButton));
     expect(find.byType(CircularProgressIndicator), findsNothing);
@@ -61,16 +65,18 @@ void main() {
   testWidgets('test check progress is visible when login in progress',
       (WidgetTester tester) async {
     whenListen<UserLoginState>(
-        mockBloc,
-        Stream<UserLoginState>.fromIterable(
-          <UserLoginState>[
-            UserLoginInProgressState(),
-          ],
-        ),
-        initialState: const UserLoginIdleState(),);
+      mockBloc,
+      Stream<UserLoginState>.fromIterable(
+        <UserLoginState>[
+          UserLoginInProgressState(),
+        ],
+      ),
+      initialState: const UserLoginIdleState(),
+    );
 
     await tester.pumpWidget(
-        createWidget(child: LoginUserButtonWidget(), bloc: mockBloc),);
+      createWidget(child: LoginUserButtonWidget(), bloc: mockBloc),
+    );
     await tester.pump(const Duration(seconds: 1));
 
     await tester.ensureVisible(find.byType(CircularProgressIndicator));
@@ -80,19 +86,23 @@ void main() {
   testWidgets('test login button is disabled when login success',
       (WidgetTester tester) async {
     whenListen<UserLoginState>(
-        mockBloc,
-        Stream<UserLoginState>.fromIterable(
-          <UserLoginState>[
-            const UserLoginSuccessState(),
-          ],
-        ),
-        initialState: const UserLoginIdleState(),);
+      mockBloc,
+      Stream<UserLoginState>.fromIterable(
+        <UserLoginState>[
+          const UserLoginSuccessState(),
+        ],
+      ),
+      initialState: const UserLoginIdleState(),
+    );
 
     await tester.pumpWidget(
-        createWidget(child: LoginUserButtonWidget(), bloc: mockBloc),);
+      createWidget(child: LoginUserButtonWidget(), bloc: mockBloc),
+    );
     await tester.pump(const Duration(seconds: 1));
 
-    expect(tester.widget<ElevatedButton>(find.byType(ElevatedButton)).enabled,
-        isFalse,);
+    expect(
+      tester.widget<ElevatedButton>(find.byType(ElevatedButton)).enabled,
+      isFalse,
+    );
   });
 }

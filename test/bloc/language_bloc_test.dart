@@ -19,21 +19,24 @@ void main() {
     mockLanguageRepository = MockLanguageRepository();
   });
 
-  blocTest<LanguageBloc, LanguageState>('test change language',
-      setUp: () {
-        when(() => mockLanguageRepository.langType).thenReturn(LanguageType.system);
-        //Pass the same value to mocked method from when(...) that will be passed during test:
-        when(() => mockLanguageRepository.setLanguage(LanguageType.system))
-            .thenAnswer((_) async => Future<void>.value());
-      },
-      wait: const Duration(milliseconds: 500),
-      build: () => LanguageBloc(
-            languageRepository: mockLanguageRepository,
-          ),
-      act: (LanguageBloc bloc) {
-        bloc.add(const SetLanguageEvent(langType: LanguageType.pl));
-      },
-      expect: () => <LanguageState>[
-            const SetLanguageState(LanguageType.pl),
-          ],);
+  blocTest<LanguageBloc, LanguageState>(
+    'test change language',
+    setUp: () {
+      when(() => mockLanguageRepository.langType)
+          .thenReturn(LanguageType.system);
+      //Pass the same value to mocked method from when(...) that will be passed during test:
+      when(() => mockLanguageRepository.setLanguage(LanguageType.system))
+          .thenAnswer((_) async => Future<void>.value());
+    },
+    wait: const Duration(milliseconds: 500),
+    build: () => LanguageBloc(
+      languageRepository: mockLanguageRepository,
+    ),
+    act: (LanguageBloc bloc) {
+      bloc.add(const SetLanguageEvent(langType: LanguageType.pl));
+    },
+    expect: () => <LanguageState>[
+      const SetLanguageState(LanguageType.pl),
+    ],
+  );
 }

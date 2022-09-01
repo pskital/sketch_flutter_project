@@ -4,13 +4,15 @@ import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 import 'package:injectable/injectable.dart';
 import 'package:sketch_flutter_project/core/form_validation/user_login_form_validator.dart';
 import 'package:sketch_flutter_project/data/models/response_login_user_model.dart';
 import 'package:sketch_flutter_project/logic/user_login/user_login_event.dart';
+
 import 'package:sketch_flutter_project/logic/user_login/user_login_state.dart';
-import 'package:sketch_flutter_project/repositories/token_repository/token_repository.dart';
-import 'package:sketch_flutter_project/rest_api/user_rest_api.dart';
+import 'package:sketch_flutter_project/repositories/local/token_repository/token_repository.dart';
+import 'package:sketch_flutter_project/repositories/remote/user_repository/user_repository.dart';
 
 @injectable
 class LoginUserBloc extends Bloc<UserLoginEvent, UserLoginState> {
@@ -52,7 +54,7 @@ class LoginUserBloc extends Bloc<UserLoginEvent, UserLoginState> {
 
   final UserLoginFormValidator loginFormValidator;
   final TokenRepository tokenRepository;
-  final UserRestApi userRestApi;
+  final UserRepository userRestApi;
 
   /*
   * Obsługa eventu logowania
